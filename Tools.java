@@ -23,24 +23,24 @@ public class Tools
     */
     public Tools (Console cC)
     {
-        c = cC;
+	c = cC;
     }
 
 
     /*
     This method pauses the program and will continue when the user presses any button.
     Variable Name         Type         Description
-    x                      int         The x value to draw the string at.
-    y                      int         The y value to draw the string at.
-    size                   int         The size of the font to draw
+    x                     int          The x value to draw the string at.
+    y                     int          The y value to draw the string at.
+    size                  int          The size of the font to draw
     message               String       The message drawn.
     */
     public void pauseProgram (int x, int y, int size, String message)
     {
-        c.setColor (Color.white);
-        c.setFont (new Font ("Lucida Sans Typewriter Regular", 1, size));
-        c.drawString (message, x, y);
-        c.getChar ();
+	c.setColor (Color.black);
+	c.setFont (new Font ("Lucida Sans Typewriter Regular", 1, size));
+	c.drawString (message, x, y);
+	c.getChar ();
     }
 
 
@@ -49,11 +49,12 @@ public class Tools
     Variable Name         Type         Description
     ms                    int          The milliseconds to sleep for.
     */
-    public void sleep (int ms) throws InterruptedException
+    public void sleep (int ms) 
     {
-        Thread.sleep (ms);
+	try {
+	    Thread.sleep (ms);
+	} catch (Exception e) {}
     }
-
 
     /*
     This method will pause the program for the specified amount of milliseconds
@@ -64,19 +65,24 @@ public class Tools
 
     public String inputMessage (String text)
     {
-        String output = JOptionPane.showInputDialog (text);
-        return output;
+	String output = JOptionPane.showInputDialog (text);
+	return output;
     }
 
 
     /*
     This method will create an error popup.
+    
     Variable Name         Type         Description
-    title                String       The title of the message
-    message              String       The text on the popup
-    label                 int       The label of the popup
+    title                 String       The title of the message
+    message               String       The text on the popup
+    label                 int          The label of the popup
+				       0 - error
+				       1 - info
+				       2 - warning
+				       3 - help/question
     */
-    public void errorMessage(String title, String message, int label){
-        
+    public void errorMessage(String message, String title, int label){
+	JOptionPane.showMessageDialog(new JFrame(), message, title, label);
     }
 }

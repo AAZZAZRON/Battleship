@@ -19,10 +19,11 @@ public class Battleship
     public Battleship() {
 	c = new Console(27, 100, "Battleship");
 	p = new Palette();
+	t = new Tools(c);
     }
     
     public void runSplash() {
-	
+
     }
     
     public void runMenu() {
