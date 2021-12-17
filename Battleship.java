@@ -31,7 +31,10 @@ public class Battleship
     }
     
     public void startGame() {
-	
+	PlayGame game = new PlayGame(c, p, t);
+	game.selectCheat();
+	game.play();
+	game.storeScore();
     }
     
     public void instructions() {
@@ -48,6 +51,8 @@ public class Battleship
     
     public static void main (String[] args) throws IOException {
 	Battleship g = new Battleship();
+	g.startGame();
+	/*
 	g.runSplash();
 	while (g.action != 4) {
 	    g.runMenu();
@@ -55,6 +60,6 @@ public class Battleship
 	    else if (g.action == 2) g.instructions();
 	    else if (g.action == 3) g.leaderboard();
 	}
-	g.goodbye();
+	g.goodbye();*/
     } 
 } 
