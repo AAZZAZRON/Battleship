@@ -33,10 +33,6 @@ public class Battleship
 	
     }
     
-    private void storeScore() {
-	
-    }
-    
     public void instructions() {
 	
     }
