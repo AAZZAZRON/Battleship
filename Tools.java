@@ -18,6 +18,7 @@ public class Tools
 
     /*
     The constructor of the Tools class
+    
     Variable Name         Type         Description
     cC                  Console        cC stands for constructor console, it is the console passed through from Battleship.java
     */
@@ -29,6 +30,7 @@ public class Tools
 
     /*
     This method pauses the program and will continue when the user presses any button.
+    
     Variable Name         Type         Description
     x                     int          The x value to draw the string at.
     y                     int          The y value to draw the string at.
@@ -46,6 +48,7 @@ public class Tools
 
     /*
     This method will pause the program for the specified amount of milliseconds
+    
     Variable Name         Type         Description
     ms                    int          The milliseconds to sleep for.
     */
@@ -58,6 +61,7 @@ public class Tools
 
     /*
     This method will pause the program for the specified amount of milliseconds
+    
     Variable Name         Type         Description
     text                  String       The text drawn on the popup
     output                String       The text the user inputs, is returned
