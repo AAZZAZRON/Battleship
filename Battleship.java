@@ -1,4 +1,9 @@
-// The "Battleship" class.
+/*
+    Programmers: Aaron Zhu and James Huynh
+    Teacher: Ms. Krasteva
+    Date: January 14th, 2022
+    Description: One-player battleship game for ICS2U ISP
+*/
 import java.awt.*;
 import java.io.*;
 import hsa.Console;
