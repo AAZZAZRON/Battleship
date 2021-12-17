@@ -17,6 +17,10 @@ public class Board
 	c = cC;
 	p = cP;
 	t = cT;
+	visited = new boolean[SIZE][SIZE];
+	hasShip = new int[SIZE][SIZE];
+	remaining = 15;
+	shipSunk = new boolean[5];
     }
     
     public void generateShips() {
