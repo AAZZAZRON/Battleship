@@ -1,7 +1,3 @@
-/*
-    
-*/
-
 import java.awt.*;
 import java.io.*;
 import hsa.Console;
