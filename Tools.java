@@ -11,25 +11,72 @@ c                   Console        Same console as the one in Battleship.java, a
 
 import hsa.*;
 import java.awt.*;
+import javax.swing.*;
 public class Tools
 {
     private Console c;
-    
+
     /*
     The constructor of the Tools class
     Variable Name         Type         Description
     cC                  Console        cC stands for constructor console, it is the console passed through from Battleship.java
     */
-    public Tools(Console cC){
+    public Tools (Console cC)
+    {
         c = cC;
     }
+
+
     /*
-    This method pauses the program and will continue when 
+    This method pauses the program and will continue when the user presses any button.
     Variable Name         Type         Description
+    x                      int         The x value to draw the string at.
+    y                      int         The y value to draw the string at.
+    size                   int         The size of the font to draw
+    message               String       The message drawn.
     */
-    public void pauseProgram(int x,int y, int size, String message){
-        c.setColor(Color.white);
-        c.setFont(new Font("Lucida Sans Typewriter Regular",1,size));
-        c.drawString(message,x,y);
+    public void pauseProgram (int x, int y, int size, String message)
+    {
+        c.setColor (Color.white);
+        c.setFont (new Font ("Lucida Sans Typewriter Regular", 1, size));
+        c.drawString (message, x, y);
+        c.getChar ();
     }
-} // Tools class
+
+
+    /*
+    This method will pause the program for the specified amount of milliseconds
+    Variable Name         Type         Description
+    ms                    int          The milliseconds to sleep for.
+    */
+    public void sleep (int ms) throws InterruptedException
+    {
+        Thread.sleep (ms);
+    }
+
+
+    /*
+    This method will pause the program for the specified amount of milliseconds
+    Variable Name         Type         Description
+    text                  String       The text drawn on the popup
+    output                String       The text the user inputs, is returned
+    */
+
+    public String inputMessage (String text)
+    {
+        String output = JOptionPane.showInputDialog (text);
+        return output;
+    }
+
+
+    /*
+    This method will create an error popup.
+    Variable Name         Type         Description
+    title                String       The title of the message
+    message              String       The text on the popup
+    label                 int       The label of the popup
+    */
+    public void errorMessage(String title, String message, int label){
+        
+    }
+}
