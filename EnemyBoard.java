@@ -25,7 +25,7 @@ public class EnemyBoard
     }
     
     public boolean hit() {
-	
+	return true;
     }
     
     public void moveCursor(char dir) {

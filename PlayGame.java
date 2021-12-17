@@ -18,7 +18,7 @@ public class PlayGame
 	c = cC;
 	p = cP;
 	t = cT;
-	user = new Board(c, p t);
+	user = new Board(c, p, t);
 	enemy = new EnemyBoard(c, p, t);
 	finished = false;
 	turns = 0;
@@ -37,9 +37,10 @@ public class PlayGame
 	while (!finished) { // while the game isn't finished
 	    key = c.getChar();
 	    // only exit while loop if the user wants to hit and that square has not been hit yet
-	    while (key 1= '\n' && !enemy.visited[enemy.cursorX][enemy.cursorY]) {
-		if ("wasd".index(key) != -1) enemy.moveCursor(key); // if key is directional, move cursor
-		else if (key == 'c' && cheat) enemy.cheat(); // if key is cheat and cheats are on, turn on/off cheats
+	    while (key != '\n' && !enemy.visited[enemy.cursorX][enemy.cursorY]) {
+		c.println("!" + key + "!");
+		if ("wasd".indexOf(key) != -1) enemy.moveCursor(key); // if key is directional, move cursor
+		else if (key == 'c' && cheat) enemy.showBoard(); // if key is cheat and cheats are on, turn on/off cheats
 		key = c.getChar(); // get the next action
 	    }
 	}

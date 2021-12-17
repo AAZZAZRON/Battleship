@@ -5,6 +5,8 @@
 * This class contains all of the colors needed in other classes.
 * Dec 17, 2021
 
+
+
 Variable Name         Type         Description
 SHIP_GRAY             Color        Stores the associated color.
 SKY_BLUE              Color        Stores the associated color.
@@ -13,6 +15,10 @@ CONSOLE_GRAY          Color        Stores the associated color.
 TEXT_GREEN            Color        Stores the associated color.
 MARKER_RED            Color        Stores the associated color.
 */
+
+import java.awt.*;
+import hsa.Console;
+
 
 public class Palette
 {

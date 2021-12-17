@@ -23,7 +23,7 @@ public class Board
     }
     
     public boolean hit(int x, int y) {
-	
+	return true;
     }
     
     public void sank() {
