@@ -40,7 +40,7 @@ public class PlayGame
 	    while (key != '\n' && !enemy.visited[enemy.cursorX][enemy.cursorY]) {
 		c.println("!" + key + "!");
 		if ("wasd".indexOf(key) != -1) enemy.moveCursor(key); // if key is directional, move cursor
-		else if (key == 'c' && cheat) enemy.showBoard(); // if key is cheat and cheats are on, turn on/off cheats
+		else if (key == 'c' && cheat) enemy.toggleCheat(); // if key is cheat and cheats are on, turn on/off cheats
 		key = c.getChar(); // get the next action
 	    }
 	}

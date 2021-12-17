@@ -11,6 +11,7 @@ public class Board
     int[][] hasShip;
     int remaining;
     boolean[] shipSunk;
+    final int SIZE = 10;
     
     public Board(Console cC, Palette cP, Tools cT) {
 	c = cC;

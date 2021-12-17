@@ -13,6 +13,7 @@ public class EnemyBoard
     boolean[] shipSunk;
     int cursorX;
     int cursorY;
+    final int SIZE = 10;
     
     public EnemyBoard(Console cC, Palette cP, Tools cT) {
 	c = cC;
@@ -32,7 +33,7 @@ public class EnemyBoard
 	
     }
     
-    public void showBoard() {
+    public void toggleCheat() {
 	
     }
     
