@@ -31,23 +31,13 @@ public class PlayGame
     
     public void play() {
 	char key; // local variable to score keypressed
-	
-	drawBackground();
 
 	user.generateShips(5); // generate user ships
-	
-	for (int i = 0; i < 10; i += 1) {
-	    for (int j = 0; j < 10; j += 1) System.out.print(user.hasShip[i][j] + "\t");
-	    System.out.println();
-	}
-	System.out.println();
-	
 	enemy.generateShips(5); // generate enemy ships
 	
-	for (int i = 0; i < 10; i += 1) {
-	    for (int j = 0; j < 10; j += 1) System.out.print(enemy.hasShip[i][j] + "\t");
-	    System.out.println();
-	}
+	drawBackground(); // draw board
+	
+	enemy.remaining(); // display which boats still need to be sunk
 	
 	while (!finished) { // while the game isn't finished
 	    key = c.getChar();
@@ -70,6 +60,44 @@ public class PlayGame
 	c.fillRect(20, 20, 250, 250);
 	c.fillRect(20, 280, 250, 250);
 	c.fillRect(285, 25, 500, 500);
+	
+	c.setColor(p.TEXT_GREEN);
+	
+	// user's board
+	c.drawRect(30, 30, 230, 230);
+	for (int i = 30 + 23; i < 260; i += 23) {
+	    c.drawLine(i, 30, i, 260);
+	    c.drawLine(30, i, 260, i);
+	}
+	
+	// enemy's board
+	c.drawRect(300, 40, 470, 470);
+	for (int i = 0; i <= 430; i += 43) {
+	    c.drawLine(300 + i, 40, 300 + i, 510);
+	    c.drawLine(300, 40 + i, 770, 40 + i);
+	}
+	
+	c.setColor(p.SHIP_GRAY); // draw user's ships
+	boolean[] checked = new boolean[6]; // if ship size i has been drawn yet
+	int val;
+	checked[0] = true;
+	int buff = 30; // buffer
+	int gridSize = 23;
+	
+	for (int i = 0; i < user.SIZE; i += 1) { // traverse grid
+	    for (int j = 0; j < user.SIZE; j += 1) {
+		val = user.hasShip[i][j];
+		if (!checked[val]) { // if it is a ship that has not been drawn yet
+		    checked[val] = true; // mark that it has been drawn
+		    if (i + 1 != user.SIZE && user.hasShip[i + 1][j] == val) c.fillOval(buff + gridSize * i, buff + gridSize * j, gridSize * val, gridSize);
+		    else c.fillOval(buff + gridSize * i, buff + gridSize * j, gridSize, gridSize * val);
+		}
+	    }
+	}
+	for (int i = 0; i < 10; i += 1) {
+	    for (int j = 0; j < 10; j += 1) System.out.print(user.hasShip[i][j] + "\t");
+	    System.out.println();
+	}
     }
     
     private void enemyTurn() {

@@ -59,7 +59,7 @@ public class Board
 		    if (y != 9 && hasShip[i][y + 1] > 0) done = false; // check that no ships are adjacent right
 		}
 		if (done) {
-		    for (int i = x; i < x + size; i += 1) hasShip[i][y] = size; // label the ship
+		    for (int i = x; i < x + size; i += 1) hasShip[i][y] = size; // fill the ship with its size
 		    break; // break out of loop
 		}
 	    }
