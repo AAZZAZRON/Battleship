@@ -21,7 +21,9 @@ public class EnemyBoard
 	t = cT;
 	visited = new boolean[SIZE][SIZE];
 	hasShip = new int[SIZE][SIZE];
-	
+	shipSunk = new boolean[5];
+	cursorX = 0;
+	cursorY = 0;
     }
     
     public void generateShips() {
