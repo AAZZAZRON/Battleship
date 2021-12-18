@@ -80,7 +80,6 @@ public class Board
 		}
 	    }
 	}
-	if (!done) t.errorMessage("BOARD WAS NOT INITIALIZED", "ERROR", 0);
 	return generateShips(size - 1);
     }
     

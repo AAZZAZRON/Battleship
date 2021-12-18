@@ -26,8 +26,66 @@ public class EnemyBoard
 	cursorY = 0;
     }
     
-    public void generateShips() {
-	
+    public boolean generateShips(int size) {
+	if (size == 0) return true;
+	boolean done = false;
+	while (true) {
+	    done = true;
+	    int x = (int) (SIZE * Math.random());
+	    int y = (int) (SIZE * Math.random());
+	    int dir = (int) (2 * Math.random());
+	    
+	    System.out.println(size + " " + x + " " + y + " " + dir);
+	    
+	    if (dir == 0 && y + size < SIZE) { // if horizontal and the ship fits on the board
+		// check that the ship squares are not occupied
+		for (int i = Math.max(0, x - 1); i <= Math.min(9, x + 1); i += 1) {
+		    if (y != 0 && hasShip[i][y - 1] > 0) done = false; // check that no ships are adjacent on the left
+		    if (hasShip[i][y + size] > 0) done = false; // check that no ships are adjacent on the right
+		}
+		for (int i = y; i < y + size; i += 1) {
+		    if (hasShip[x][i] > 0) done = false; // check where the ship is
+		    if (x != 0 && hasShip[x - 1][i] > 0) done = false; // check that no ships are adjacent above
+		    if (x != 9 && hasShip[x + 1][i] > 0) done = false; // check that no ships are adjacent below
+		}
+		if (done) {
+		    for (int i = Math.max(0, x - 1); i <= Math.min(9, x + 1); i += 1) {
+			if (y != 0) hasShip[i][y - 1] = -1; // fill adjacent squares on the left
+			hasShip[i][y + size] = -1; // fill adjacent squares on the right
+		    }
+		    for (int i = y; i < y + size; i += 1) {
+			hasShip[x][i] = size; // fill the ship with its size
+			if (x != 0) hasShip[x - 1][i] = -1; // fill adjacent squares above
+			if (x != 9) hasShip[x + 1][i] = -1; // fill adjacent squares below
+		    }
+		    break; // break out of loop
+		}
+	    } else if (x + size < SIZE) { // if vertical and the ship fits on the board
+		// check that the ship squares are not occupied
+		for (int i = Math.max(0, y - 1); i <= Math.min(9, y + 1); i += 1) {
+		    if (x != 0 && hasShip[x - 1][i] > 0) done = false; // check that no ships are adjacent on the top
+		    if (hasShip[x + size][i] > 0) done = false; // check that no ships are adjacent on the bottom
+		}
+		for (int i = x; i < x + size; i += 1) {
+		    if (hasShip[i][y] > 0) done = false; // check where the ship is
+		    if (y != 0 && hasShip[i][y - 1] > 0) done = false; // check that no ships are adjacent left
+		    if (y != 9 && hasShip[i][y + 1] > 0) done = false; // check that no ships are adjacent right
+		}
+		if (done) {
+		    for (int i = Math.max(0, y - 1); i <= Math.min(9, y + 1); i += 1) {
+			if (x != 0) hasShip[x - 1][i] = -1; // fill adjacent squares on the top
+			hasShip[x + size][i] = -1; // fill adjacent squares on the bottom
+		    }
+		    for (int i = x; i < x + size; i += 1) {
+			hasShip[i][y] = size; // fill the ship with its size
+			if (y != 0) hasShip[i][y - 1] = -1; // fill adjacent squares left
+			if (y != 9) hasShip[i][y + 1] = -1; // fill adjacent squares right
+		    }
+		    break; // break out of loop
+		}
+	    }
+	}
+	return generateShips(size - 1);
     }
     
     public boolean hit() {

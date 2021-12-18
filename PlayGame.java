@@ -40,10 +40,14 @@ public class PlayGame
 	    for (int j = 0; j < 10; j += 1) System.out.print(user.hasShip[i][j] + "\t");
 	    System.out.println();
 	}
-	    
+	System.out.println();
 	
+	enemy.generateShips(5); // generate enemy ships
 	
-	enemy.generateShips(); // generate enemy ships
+	for (int i = 0; i < 10; i += 1) {
+	    for (int j = 0; j < 10; j += 1) System.out.print(enemy.hasShip[i][j] + "\t");
+	    System.out.println();
+	}
 	
 	while (!finished) { // while the game isn't finished
 	    key = c.getChar();
