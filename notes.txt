@@ -1,0 +1,3 @@
+hasShip is [r][c]
+visited is [r][c]
+displaying images is [c][r] (for simplicity sake)
