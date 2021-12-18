@@ -21,7 +21,7 @@ public class EnemyBoard
 	t = cT;
 	visited = new boolean[SIZE][SIZE];
 	hasShip = new int[SIZE][SIZE];
-	shipSunk = new boolean[5];
+	shipSunk = new boolean[6];
 	cursorX = 0;
 	cursorY = 0;
     }
@@ -86,8 +86,23 @@ public class EnemyBoard
 	
     }
     
-    public void remaining() {
+    public void remaining(int nTurn, int nHit) {
+	String message; // message for hit or alive
+    
+	c.setColor(p.BOARD_BACKGROUND); // reset board console
+	c.fillRect(20, 280, 250, 160);
+
+	c.setColor(p.TEXT_GREEN);
+	c.setFont (new Font ("Lucida Sans Typewriter Regular", 1, 25));
+	c.drawString("Turns: " + nTurn, 30, 305);
+	c.drawString("Hits: " + nHit, 30, 330);
+	c.setFont (new Font ("Lucida Sans Typewriter Regular", 1, 20));
 	
+	for (int i = 1; i <= 5; i += 1) {
+	    if (shipSunk[i]) message = "SUNK";
+	    else message = "OPERATING";
+	    c.drawString(i + "x1 " + message, 30, 335 + i * 20);
+	}
     }
     
 }

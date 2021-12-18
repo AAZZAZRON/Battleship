@@ -37,7 +37,7 @@ public class PlayGame
 	
 	drawBackground(); // draw board
 	
-	enemy.remaining(); // display which boats still need to be sunk
+	enemy.remaining(turns, hits); // display which boats still need to be sunk
 	
 	while (!finished) { // while the game isn't finished
 	    key = c.getChar();
@@ -93,10 +93,6 @@ public class PlayGame
 		    else c.fillOval(buff + gridSize * i, buff + gridSize * j, gridSize, gridSize * val);
 		}
 	    }
-	}
-	for (int i = 0; i < 10; i += 1) {
-	    for (int j = 0; j < 10; j += 1) System.out.print(user.hasShip[i][j] + "\t");
-	    System.out.println();
 	}
     }
     
