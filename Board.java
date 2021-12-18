@@ -44,15 +44,7 @@ public class Board
 		    if (x != 9 && hasShip[x + 1][i] > 0) done = false; // check that no ships are adjacent below
 		}
 		if (done) {
-		    for (int i = Math.max(0, x - 1); i <= Math.min(9, x + 1); i += 1) {
-			if (y != 0) hasShip[i][y - 1] = -1; // fill adjacent squares on the left
-			hasShip[i][y + size] = -1; // fill adjacent squares on the right
-		    }
-		    for (int i = y; i < y + size; i += 1) {
-			hasShip[x][i] = size; // fill the ship with its size
-			if (x != 0) hasShip[x - 1][i] = -1; // fill adjacent squares above
-			if (x != 9) hasShip[x + 1][i] = -1; // fill adjacent squares below
-		    }
+		    for (int i = y; i < y + size; i += 1) hasShip[x][i] = size; // label the ship
 		    break; // break out of loop
 		}
 	    } else if (x + size < SIZE) { // if vertical and the ship fits on the board
@@ -67,15 +59,7 @@ public class Board
 		    if (y != 9 && hasShip[i][y + 1] > 0) done = false; // check that no ships are adjacent right
 		}
 		if (done) {
-		    for (int i = Math.max(0, y - 1); i <= Math.min(9, y + 1); i += 1) {
-			if (x != 0) hasShip[x - 1][i] = -1; // fill adjacent squares on the top
-			hasShip[x + size][i] = -1; // fill adjacent squares on the bottom
-		    }
-		    for (int i = x; i < x + size; i += 1) {
-			hasShip[i][y] = size; // fill the ship with its size
-			if (y != 0) hasShip[i][y - 1] = -1; // fill adjacent squares left
-			if (y != 9) hasShip[i][y + 1] = -1; // fill adjacent squares right
-		    }
+		    for (int i = x; i < x + size; i += 1) hasShip[i][y] = size; // label the ship
 		    break; // break out of loop
 		}
 	    }
