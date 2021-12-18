@@ -71,11 +71,34 @@ public class EnemyBoard
     }
     
     public boolean hit() {
-	return true;
+	visited[cursorX][cursorY] = true; // visited
+	if (hasShip[cursorX][cursorY] == 0) c.setColor(Color.white); // set color
+	else c.setColor(Color.red);
+	c.fillOval(308 + 47 * cursorX, 48 + 47 * cursorY, 31, 31); // draw "hit"
+	if (hasShip[cursorX][cursorY] != 0) sank(); // if hit, check if it sank a ship
+	return hasShip[cursorX][cursorY] != 0;
     }
     
     public void moveCursor(char dir) {
+	c.setColor(p.BOARD_BACKGROUND); // remove cursor
+	c.fillRect(300 + 47 * cursorX, 40 + 47 * cursorY, 47, 47);
+	c.setColor(p.TEXT_GREEN);
+	c.drawRect(300 + 47 * cursorX, 40 + 47 * cursorY, 47, 47);
+	if (visited[cursorX][cursorY]) {
+	    if (hasShip[cursorX][cursorY] != 0) c.setColor(Color.red);
+	    else c.setColor(Color.white);
+	    c.fillOval(308 + 47 * cursorX, 48 + 47 * cursorY, 31, 31);
+	}
 	
+	// move cursor
+	if ((dir == 'w' || dir == 'W') && cursorY != 0) cursorY -= 1;
+	if ((dir == 'a' || dir == 'A') && cursorX != 0) cursorX -= 1;
+	if ((dir == 's' || dir == 'S') && cursorY != SIZE - 1) cursorY += 1;
+	if ((dir == 'd' || dir == 'D') && cursorX != SIZE - 1) cursorX += 1;
+	
+	// redraw cursor
+	c.setColor(Color.red); 
+	c.drawRect(302 + 47 * cursorX, 42 + 47 * cursorY, 43, 43);
     }
     
     public void toggleCheat() {

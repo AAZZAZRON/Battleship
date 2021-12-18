@@ -36,18 +36,19 @@ public class PlayGame
 	enemy.generateShips(5); // generate enemy ships
 	
 	drawBackground(); // draw board
+	enemy.moveCursor('a'); // draw the cursor at [0, 0]
 	
 	enemy.remaining(turns, hits); // display which boats still need to be sunk
 	
 	while (!finished) { // while the game isn't finished
 	    key = c.getChar();
 	    // only exit while loop if the user wants to hit and that square has not been hit yet
-	    while (key != ' ' && !enemy.visited[enemy.cursorX][enemy.cursorY]) {
-		c.println("!" + key + "!");
-		if ("wasd".indexOf(key) != -1) enemy.moveCursor(key); // if key is directional, move cursor
+	    while (!(key == ' ' && !enemy.visited[enemy.cursorX][enemy.cursorY])) {
+		if ("wasdWASD".indexOf(key) != -1) enemy.moveCursor(key); // if key is directional, move cursor
 		else if (key == 'c' && cheat) enemy.toggleCheat(); // if key is cheat and cheats are on, turn on/off cheats
 		key = c.getChar(); // get the next action
 	    }
+	    enemy.hit();
 	}
     }
     
@@ -72,7 +73,7 @@ public class PlayGame
 	
 	// enemy's board
 	c.drawRect(300, 40, 470, 470);
-	for (int i = 0; i <= 430; i += 43) {
+	for (int i = 0; i < 470; i += 47) {
 	    c.drawLine(300 + i, 40, 300 + i, 510);
 	    c.drawLine(300, 40 + i, 770, 40 + i);
 	}
