@@ -48,7 +48,9 @@ public class PlayGame
 		else if (key == 'c' && cheat) enemy.toggleCheat(); // if key is cheat and cheats are on, turn on/off cheats
 		key = c.getChar(); // get the next action
 	    }
-	    enemy.hit();
+	    if (!enemy.hit()) {
+		enemyTurn();
+	    }
 	}
     }
     

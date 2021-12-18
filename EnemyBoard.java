@@ -127,5 +127,4 @@ public class EnemyBoard
 	    c.drawString(i + "x1 " + message, 30, 345 + i * 20);
 	}
     }
-    
 }
