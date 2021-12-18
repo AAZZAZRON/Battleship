@@ -90,18 +90,18 @@ public class EnemyBoard
 	String message; // message for hit or alive
     
 	c.setColor(p.BOARD_BACKGROUND); // reset board console
-	c.fillRect(20, 280, 250, 160);
+	c.fillRect(20, 280, 250, 170);
 
 	c.setColor(p.TEXT_GREEN);
 	c.setFont (new Font ("Lucida Sans Typewriter Regular", 1, 25));
-	c.drawString("Turns: " + nTurn, 30, 305);
-	c.drawString("Hits: " + nHit, 30, 330);
+	c.drawString("Turns: " + nTurn, 30, 315);
+	c.drawString("Hits: " + nHit, 30, 340);
 	c.setFont (new Font ("Lucida Sans Typewriter Regular", 1, 20));
 	
 	for (int i = 1; i <= 5; i += 1) {
 	    if (shipSunk[i]) message = "SUNK";
 	    else message = "OPERATING";
-	    c.drawString(i + "x1 " + message, 30, 335 + i * 20);
+	    c.drawString(i + "x1 " + message, 30, 345 + i * 20);
 	}
     }
     

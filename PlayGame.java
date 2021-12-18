@@ -42,7 +42,7 @@ public class PlayGame
 	while (!finished) { // while the game isn't finished
 	    key = c.getChar();
 	    // only exit while loop if the user wants to hit and that square has not been hit yet
-	    while (key != '\n' && !enemy.visited[enemy.cursorX][enemy.cursorY]) {
+	    while (key != ' ' && !enemy.visited[enemy.cursorX][enemy.cursorY]) {
 		c.println("!" + key + "!");
 		if ("wasd".indexOf(key) != -1) enemy.moveCursor(key); // if key is directional, move cursor
 		else if (key == 'c' && cheat) enemy.toggleCheat(); // if key is cheat and cheats are on, turn on/off cheats
@@ -76,6 +76,12 @@ public class PlayGame
 	    c.drawLine(300 + i, 40, 300 + i, 510);
 	    c.drawLine(300, 40 + i, 770, 40 + i);
 	}
+	
+	// instructional text in case user doesn't read instructions
+	c.setFont (new Font ("Lucida Sans Typewriter Regular", 1, 17));
+	c.drawString("use 'wasd' to move cursor", 30, 475);
+	c.drawString("use space to hit coordinate", 30, 495);
+	if (cheat) c.drawString("use c to toggle cheats", 30, 515);
 	
 	c.setColor(p.SHIP_GRAY); // draw user's ships
 	boolean[] checked = new boolean[6]; // if ship size i has been drawn yet
