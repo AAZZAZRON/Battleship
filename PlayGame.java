@@ -31,6 +31,9 @@ public class PlayGame
     
     public void play() {
 	char key; // local variable to score keypressed
+	
+	drawBackground();
+
 	user.generateShips(); // generate user ships
 	enemy.generateShips(); // generate enemy ships
 	
@@ -44,6 +47,17 @@ public class PlayGame
 		key = c.getChar(); // get the next action
 	    }
 	}
+    }
+    
+    private void drawBackground() {
+	// graphics for game
+	c.setColor(p.CONSOLE_GRAY);
+	c.fillRect(10, 10, 800, 540);
+	
+	c.setColor(p.BOARD_BACKGROUND);
+	c.fillRect(20, 20, 250, 250);
+	c.fillRect(20, 280, 250, 250);
+	c.fillRect(285, 25, 500, 500);
     }
     
     private void enemyTurn() {

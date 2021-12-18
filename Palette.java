@@ -26,6 +26,7 @@ public class Palette
     final Color SKY_BLUE = new Color(164, 194, 244);
     final Color OCEAN_BLUE = new Color(109, 158, 235);
     final Color CONSOLE_GRAY = new Color(183, 183, 183);
+    final Color BOARD_BACKGROUND = new Color(1, 40, 49);
     final Color TEXT_GREEN = new Color(0, 255, 0);
     final Color MARKER_RED = new Color(204,0,0);
 
