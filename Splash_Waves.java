@@ -14,14 +14,28 @@ import hsa.Console;
 
 public class Splash_Waves extends Thread
 {
-    private static Console c;
-    Tools t = new Tools (c);
-    Palette p = new Palette ();
+    private Console c;
+    private Tools t = new Tools (c);
+    private Palette p = new Palette ();
 
+    public Splash_Waves (Console cC)
+    {
+	c = cC;
+    }
+
+
+    /*
+    This public method is run when start() is called on the thread.
+    For Loop 1: Animates the waves
+    For Loop 2: Draws 12 arcs that make up the wave
+    Variable Name         Type         Description
+    i                     int          Controls the for loop and increments for each frame of animation.
+    j                     int          Controls the for loop and increments for each arc.
+    */
     public void run ()
     {
 	int shift = -30;
-	for (int i = 0 ; i < 500 ; i++)
+	for (int i = 0 ; i < 300 ; i++)
 	{
 	    if (i % 50 >= 25)
 	    {
@@ -41,7 +55,7 @@ public class Splash_Waves extends Thread
 		c.fillArc ((j * 70) + shift, 410, 100, 100, 30, 120);
 		c.setColor (p.OCEAN_BLUE);
 		c.fillArc (10 + (j * 70) + shift, 420, 80, 90, 0, 180);
-		
+
 		c.setColor (p.OCEAN_BLUE);
 		c.fillArc (-11 + (j * 70) + shift, 479, 102, 100, 29, 122);
 		c.fillArc (-1 + (j * 70) + shift, 489, 82, 90, -1, 182);
@@ -54,5 +68,4 @@ public class Splash_Waves extends Thread
 	}
 
     }
-
 }
