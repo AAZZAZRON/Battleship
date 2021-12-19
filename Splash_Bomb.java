@@ -2,7 +2,7 @@
 * James Huynh and Aaron Zhu
 * Ms. Krasteva
 * ISP ICS3UP
-* This class contains
+* This class creates a bomb and draws it on the specified console, with specified x value, delay, and speed.
 * Dec 19, 2021
 
 Variable Name         Type         Description
