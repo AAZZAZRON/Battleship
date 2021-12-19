@@ -17,7 +17,7 @@ import hsa.Console;
 
 public class Splash_Bomb implements Runnable
 {
-    private static Console c;           // The output console
+    private Console c;           // The output console
     private Tools t = new Tools (c);
     private Palette p = new Palette ();
     private int x = 0;
