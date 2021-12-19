@@ -13,12 +13,16 @@ import hsa.Console;
 
 public class Splash_Ship extends Thread
 {
-    static Console c;           // The output console
-    private static Tools t = new Tools (c);
+    Console c;           // The output console
+    private Tools t = new Tools (c);
     private Palette p = new Palette ();
-    public Splash_Ship(Console c){
+
+    public Splash_Ship (Console c)
+    {
 	this.c = c;
     }
+
+
     public void run ()
     {
 	c.setColor (p.SKY_BLUE);
