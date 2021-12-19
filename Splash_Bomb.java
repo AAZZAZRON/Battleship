@@ -27,8 +27,9 @@ public class Splash_Bomb implements Runnable
     This is the public constructor for this runnable, it accepts 3 parameters and sets the values to the parameters given.
     It also draws the background when called.
     */
-    public Splash_Bomb (int x, int delay, int speed)
+    public Splash_Bomb (Console c, int x, int delay, int speed)
     {
+	this.c = c;
 	this.x = x;
 	this.delay = delay;
 	this.speed = speed;
@@ -37,6 +38,7 @@ public class Splash_Bomb implements Runnable
 	c.setColor (p.OCEAN_BLUE);
 	c.fillRect (0, 350, 800, 300);
     }
+
 
     /*
     This public method is run when start() is called on the thread.
@@ -55,9 +57,9 @@ public class Splash_Bomb implements Runnable
 	    c.fillRect (x + 30, -110 + i, 10, 20);
 	    c.setColor (Color.black);
 	    c.fillOval (x, -100 + i, 70, 70);
-	    c.setColor (p.OCEAN_BLUE);
-	    c.fillRect (x - 50, 350, 800, 300);
 	    t.sleep (speed);
 	}
+	c.setColor (p.OCEAN_BLUE);
+	c.fillRect (x - 50, 350, 800, 300);
     }
 }

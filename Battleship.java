@@ -23,7 +23,14 @@ public class Battleship
     }
     
     public void runSplash() {
-
+	Splash_Waves t1 = new Splash_Waves(c);
+	t1.start();
+	Splash_Bomb a = new Splash_Bomb(c,50,0,5);
+	Thread t2 = new Thread(a);
+	t2.start();
+	Splash_Bomb b = new Splash_Bomb(c,700,1000,5);
+	Thread t3 = new Thread(b);
+	t3.start();
     }
     
     public void runMenu() {
@@ -32,6 +39,7 @@ public class Battleship
     
     public void startGame() {
 	t.pauseProgram(0, 0, 50, "%");
+	c.clear();
 	PlayGame game = new PlayGame(c, p, t);
 	game.selectCheat();
 	game.play();
@@ -52,6 +60,7 @@ public class Battleship
     
     public static void main (String[] args) throws IOException {
 	Battleship g = new Battleship();
+	g.runSplash();
 	g.startGame();
 	/*
 	g.runSplash();

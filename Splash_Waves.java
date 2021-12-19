@@ -35,7 +35,7 @@ public class Splash_Waves extends Thread
     public void run ()
     {
 	int shift = -30;
-	for (int i = 0 ; i < 500 ; i++)
+	for (int i = 0 ; i < 300 ; i++)
 	{
 	    if (i % 50 >= 25)
 	    {
