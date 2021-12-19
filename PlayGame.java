@@ -36,7 +36,7 @@ public class PlayGame
 	enemy.generateShips(5); // generate enemy ships
 	
 	drawBackground(); // draw board
-	enemy.moveCursor('a'); // draw the cursor at [0, 0]
+	enemy.moveCursor('q'); // draw the cursor at [0, 0]
 	
 	enemy.remaining(turns, hits); // display which boats still need to be sunk
 	
