@@ -44,7 +44,10 @@ public class PlayGame
 	    key = c.getChar();
 	    // only exit while loop if the user wants to hit and that square has not been hit yet
 	    while (!(key == ' ' && !enemy.visited[enemy.cursorX][enemy.cursorY])) {
-		if ("wasdWASD".indexOf(key) != -1) enemy.moveCursor(key); // if key is directional, move cursor
+		if ("wasdWASD".indexOf(key) != -1) {
+		    if (enemy.cheatsOn) enemy.toggleCheat(); // turn off cheats
+		    enemy.moveCursor(key); // if key is directional, move cursor
+		}
 		else if (key == 'c' && cheat) enemy.toggleCheat(); // if key is cheat and cheats are on, turn on/off cheats
 		key = c.getChar(); // get the next action
 	    }

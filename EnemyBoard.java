@@ -21,6 +21,7 @@ public class EnemyBoard
 	t = cT;
 	visited = new boolean[SIZE][SIZE];
 	hasShip = new int[SIZE][SIZE];
+	cheatsOn = false;
 	shipSunk = new boolean[6];
 	cursorX = 0;
 	cursorY = 0;
@@ -74,7 +75,7 @@ public class EnemyBoard
 	visited[cursorX][cursorY] = true; // visited
 	if (hasShip[cursorX][cursorY] == 0) c.setColor(Color.white); // set color
 	else c.setColor(Color.red);
-	c.fillOval(308 + 47 * cursorX, 48 + 47 * cursorY, 31, 31); // draw "hit"
+	c.fillOval(311 + 47 * cursorX, 51 + 47 * cursorY, 25, 25); // draw "hit"
 	if (hasShip[cursorX][cursorY] != 0) sank(); // if hit, check if it sank a ship
 	return hasShip[cursorX][cursorY] != 0;
     }
@@ -87,7 +88,7 @@ public class EnemyBoard
 	if (visited[cursorX][cursorY]) {
 	    if (hasShip[cursorX][cursorY] != 0) c.setColor(Color.red);
 	    else c.setColor(Color.white);
-	    c.fillOval(308 + 47 * cursorX, 48 + 47 * cursorY, 31, 31);
+	    c.fillOval(311 + 47 * cursorX, 51 + 47 * cursorY, 25, 25); // draw "hit"
 	}
 	
 	// move cursor
@@ -102,7 +103,47 @@ public class EnemyBoard
     }
     
     public void toggleCheat() {
-	
+	boolean[] checked = new boolean[6]; // if ship size i has been drawn yet
+	int bX = 300;
+	int bY = 40;
+	int gridSize = 47;
+	int val;
+	if (!cheatsOn) {
+	    for (int i = 0; i < SIZE; i += 1) { // traverse grid
+		for (int j = 0; j < SIZE; j += 1) {
+		    val = hasShip[i][j];
+		    if (!checked[val]) { // if it is a ship that has not been drawn yet
+			c.setColor(p.SHIP_GRAY);
+			checked[val] = true; // mark that it has been drawn
+			if (i + 1 != SIZE && hasShip[i + 1][j] == val) c.fillOval(bX + gridSize * i, bY + gridSize * j, gridSize * val, gridSize);
+			else c.fillOval(bX + gridSize * i, bY + gridSize * j, gridSize, gridSize * val);
+		    }
+		    // draw hits on top of ship
+		    if (hasShip[i][j] != 0 && visited[i][j]) {
+			c.setColor(Color.red);
+			c.fillOval(311 + 47 * i, 51 + 47 * j, 25, 25); // draw "hit"
+		    }
+		}
+	    }
+	    cheatsOn = true;
+	} else {
+	    for (int i = 0; i < SIZE; i += 1) { // traverse grid
+		for (int j = 0; j < SIZE; j += 1) {
+		    val = hasShip[i][j];
+		    if (val != 0) {
+			c.setColor(p.BOARD_BACKGROUND); // remove ship
+			c.fillRect(300 + 47 * i, 40 + 47 * j, 47, 47);
+			c.setColor(p.TEXT_GREEN);
+			c.drawRect(300 + 47 * i, 40 + 47 * j, 47, 47);
+			if (visited[i][j]) {
+			    c.setColor(Color.red);
+			    c.fillOval(311 + 47 * i, 51 + 47 * j, 25, 25); // draw "hit"
+			}
+		    }
+		}
+	    }
+	    cheatsOn = false;
+	}
     }
     
     public void sank() {
