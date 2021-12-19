@@ -23,14 +23,30 @@ public class Battleship
     }
     
     public void runSplash() {
-	Splash_Waves t1 = new Splash_Waves(c);
-	t1.start();
-	Splash_Bomb a = new Splash_Bomb(c,50,0,5);
-	Thread t2 = new Thread(a);
-	t2.start();
-	Splash_Bomb b = new Splash_Bomb(c,700,1000,5);
-	Thread t3 = new Thread(b);
-	t3.start();
+	Splash_Ship g = new Splash_Ship (c);
+	g.start ();
+	try
+	{
+	    g.join ();
+	}
+	catch (Exception e)
+	{
+	}
+	Splash_Waves t1 = new Splash_Waves (c);
+	t1.start ();
+	Splash_Bomb a = new Splash_Bomb (c, 50, 0, 5);
+	Thread t2 = new Thread (a);
+	t2.start ();
+	Splash_Bomb b = new Splash_Bomb (c, 700, 1000, 5);
+	Thread t3 = new Thread (b);
+	t3.start ();
+	try
+	{
+	    t1.join ();
+	}
+	catch (Exception e)
+	{
+	}
     }
     
     public void runMenu() {

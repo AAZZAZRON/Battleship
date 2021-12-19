@@ -33,8 +33,6 @@ public class Splash_Bomb implements Runnable
 	this.x = x;
 	this.delay = delay;
 	this.speed = speed;
-	c.setColor (p.SKY_BLUE);
-	c.fillRect (0, 0, 800, 350);
 	c.setColor (p.OCEAN_BLUE);
 	c.fillRect (0, 350, 800, 300);
     }
