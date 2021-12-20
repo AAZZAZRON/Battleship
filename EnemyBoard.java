@@ -23,6 +23,7 @@ public class EnemyBoard
 	hasShip = new int[SIZE][SIZE];
 	cheatsOn = false;
 	shipSunk = new boolean[6];
+	shipSunk[0] = true;
 	cursorX = 0;
 	cursorY = 0;
     }
@@ -78,6 +79,12 @@ public class EnemyBoard
 	c.fillOval(311 + 47 * cursorX, 51 + 47 * cursorY, 25, 25); // draw "hit"
 	if (hasShip[cursorX][cursorY] != 0) sank(); // if hit, check if it sank a ship
 	return hasShip[cursorX][cursorY] != 0;
+    }
+    
+    public void hit(int x, int y) { // overloaded method to hit adjacent squares when ship sinks
+	visited[x][y] = true; // visited
+	c.setColor(Color.white); // set color
+	c.fillOval(311 + 47 * x, 51 + 47 * y, 25, 25); // draw "hit"
     }
     
     public void moveCursor(char dir) {
@@ -153,7 +160,61 @@ public class EnemyBoard
     }
     
     private void sank() {
+	int x;
+	int y;
+	int dir;
+	int hitC = hasShip[cursorX][cursorY] - 1; // number of spots on the ship that have been hit
 	
+	// search downwards
+	x = cursorX;
+	y = cursorY;
+	while (true) {
+	    if (x != SIZE - 1 && hasShip[x + 1][y] != 0) x += 1;
+	    else if (y != SIZE - 1 && hasShip[x][y + 1] != 0) y += 1;
+	    else break;
+	    if (visited[x][y]) hitC -= 1;
+	}
+	
+	// search upwards
+	x = cursorX;
+	y = cursorY;
+	while (true) {
+	    if (x != 0 && hasShip[x - 1][y] != 0) x -= 1;
+	    else if (y != 0 && hasShip[x][y - 1] != 0) y -= 1;
+	    else break;
+	    if (visited[x][y]) hitC -= 1;
+	}
+	
+	if (hitC == 0) { // if the ship was sunk
+	    // alert user that ship has been sunk
+	    t.errorMessage("SHIP " + hasShip[cursorX][cursorY] + "x1 HAS BEEN SUNK", "SUNK", 2);
+	    
+	    // mark ship as sunk
+	    shipSunk[hasShip[cursorX][cursorY]] = true;
+	    
+	    // mark all surrounding coordinates as "visited"
+	    if (x - cursorX == 0) { // if ship is horizontal
+		// check that the ship squares are not occupied
+		for (int i = Math.max(0, x - 1); i <= Math.min(9, x + 1); i += 1) {
+		    if (y != 0) hit(i, y - 1); // hit left
+		    hit(i, y + hasShip[cursorX][cursorY]); // hit right
+		}
+		for (int i = y; i < y + hasShip[cursorX][cursorY]; i += 1) {
+		    if (x != 0) hit(x - 1, i); // hit above
+		    if (x != 9) hit(x + 1, i); // hit below
+		}
+	    } else {
+		// check that the ship squares are not occupied
+		for (int i = Math.max(0, y - 1); i <= Math.min(9, y + 1); i += 1) {
+		    if (x != 0) hit(x - 1, i); // hit above
+		    hit(x + hasShip[cursorX][cursorY], i); // hit below
+		}
+		for (int i = x; i < x + hasShip[cursorX][cursorY]; i += 1) {
+		    if (y != 0) hit(i, y - 1); // hit left
+		    if (y != 9) hit(i, y + 1); // hit right
+		}
+	    }
+	}
     }
     
     public void remaining(int nTurn, int nHit) {

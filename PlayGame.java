@@ -22,7 +22,7 @@ public class PlayGame
 	user = new Board (c, p, t);
 	enemy = new EnemyBoard (c, p, t);
 	finished = false;
-	turns = 0;
+	turns = 1;
 	hits = 0;
     }
 
@@ -43,11 +43,9 @@ public class PlayGame
 	drawBackground (); // draw board
 	enemy.moveCursor ('q'); // draw the cursor at [0, 0]
 
-	enemy.remaining (turns, hits); // display which boats still need to be sunk
-
 	t.errorMessage ("Your Turn!", "Your Turn", 1);
-	while (!finished)
-	{ // while the game isn't finished
+	while (!finished) { // while the game isn't finished
+	    enemy.remaining(turns, hits);
 	    // only exit while loop if the user wants to hit and that square has not been hit yet
 	    while (!(key == ' ' && !enemy.visited [enemy.cursorX] [enemy.cursorY]))
 	    {
@@ -62,18 +60,19 @@ public class PlayGame
 		
 		if ("wasdWASD".indexOf (key) != -1)
 		{
-		    if (enemy.cheatsOn)
-			enemy.toggleCheat ();                    // turn off cheats
+		    if (enemy.cheatsOn) enemy.toggleCheat (); // turn off cheats
 		    enemy.moveCursor (key); // if key is directional, move cursor
 		}
-		else if (key == 'c' && cheat)
-		    enemy.toggleCheat ();                              // if key is cheat and cheats are on, turn on/off cheats
+		else if (key == 'c' && cheat) enemy.toggleCheat (); // if key is cheat and cheats are on, turn on/off cheats
 	    }
 	    if (!enemy.hit ())
 	    {
+		turns += 1;
 		t.errorMessage ("Enemy's Turn!", "Enemy's Turn", 1);
 		enemyTurn ();
 		t.errorMessage ("Your Turn!", "Your Turn", 1);
+	    } else {
+		hits += 1;
 	    }
 	}
     }
