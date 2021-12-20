@@ -93,10 +93,14 @@ public class EnemyBoard
 	    }
 	    
 	    // move cursor
-	    if ((dir == 'w' || dir == 'W') && cursorY != 0) cursorY -= 1;
-	    if ((dir == 'a' || dir == 'A') && cursorX != 0) cursorX -= 1;
-	    if ((dir == 's' || dir == 'S') && cursorY != SIZE - 1) cursorY += 1;
-	    if ((dir == 'd' || dir == 'D') && cursorX != SIZE - 1) cursorX += 1;
+	    if (dir == 'w' || dir == 'W') cursorY -= 1;
+	    if (dir == 'a' || dir == 'A') cursorX -= 1;
+	    if (dir == 's' || dir == 'S') cursorY += 1;
+	    if (dir == 'd' || dir == 'D') cursorX += 1;
+	    
+	    // loop to the other side
+	    cursorX = (cursorX + SIZE) % SIZE;
+	    cursorY = (cursorY + SIZE) % SIZE;
 	}
 	// redraw cursor
 	c.setColor(Color.red); 
@@ -148,7 +152,7 @@ public class EnemyBoard
 	moveCursor('q');
     }
     
-    public void sank() {
+    private void sank() {
 	
     }
     

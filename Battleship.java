@@ -76,7 +76,7 @@ public class Battleship
     
     public static void main (String[] args) throws IOException {
 	Battleship g = new Battleship();
-	g.runSplash();
+	// g.runSplash();
 	g.startGame();
 	/*
 	g.runSplash();

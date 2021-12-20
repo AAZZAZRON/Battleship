@@ -68,10 +68,15 @@ public class Board
     }
     
     public boolean hit(int x, int y) {
-	return true;
+	visited[x][y] = true; // visited
+	if (hasShip[x][y] == 0) c.setColor(Color.white); // set color
+	else c.setColor(Color.red);
+	c.fillOval(36 + 23 * x, 36 + 23 * y, 11, 11); // draw "hit"
+	if (hasShip[x][y] != 0) sank(); // if hit, check if it sank a ship
+	return hasShip[x][y] != 0;
     }
     
-    public void sank() {
+    private void sank() {
 	
     }
     

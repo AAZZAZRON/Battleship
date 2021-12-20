@@ -41,6 +41,7 @@ public class PlayGame
 	enemy.remaining(turns, hits); // display which boats still need to be sunk
 	
 	while (!finished) { // while the game isn't finished
+	    t.errorMessage("Your Turn!", "Your Turn", 1);
 	    key = c.getChar();
 	    // only exit while loop if the user wants to hit and that square has not been hit yet
 	    while (!(key == ' ' && !enemy.visited[enemy.cursorX][enemy.cursorY])) {
@@ -52,6 +53,7 @@ public class PlayGame
 		key = c.getChar(); // get the next action
 	    }
 	    if (!enemy.hit()) {
+		t.errorMessage("Enemy's Turn!", "Enemy's Turn", 1);
 		enemyTurn();
 	    }
 	}
@@ -109,7 +111,17 @@ public class PlayGame
     }
     
     private void enemyTurn() {
-	
+	int x = (int) (user.SIZE * Math.random());
+	int y = (int) (user.SIZE * Math.random());
+	boolean keepGoing = true;
+	while (keepGoing) {
+	    while (user.visited[x][y]) { // whilte the position has been visited, pick another position
+		x = (int) (user.SIZE * Math.random());
+		y = (int) (user.SIZE * Math.random());
+	    }
+	    if (!user.hit(x, y)) keepGoing = false;
+	    t.sleep(3000);
+	}
     }
     
     public void storeScore() {
