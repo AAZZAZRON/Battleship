@@ -1,9 +1,29 @@
+/*
+    Programmers: Aaron Zhu and James Huynh
+    Teacher: Ms. Krasteva
+    Date: January 14th, 2022
+    Description: PlayGame.java
+    
+    Controls the game flow/logic for Battleship
+*/
+
 import java.awt.*;
 import java.io.*;
 import hsa.Console;
 
-public class PlayGame
-{
+public class PlayGame {
+    /*
+	Variable Name        Type           Description
+	c                    Console        stores the console instance that was initialized in Battleship.java
+	p                    Palette        stores the palette instance that was initialized in Battleship.java
+	t                    Tools          stores the tools instance that was initialized in Battleship.java
+	user                 Board          stores the user's board for this round
+	enemy                EnemyBoard     stores the enemy's board for this round
+	finished             boolean        stores if the game is finished
+	cheat                boolean        stores if the user is playing in cheat mode (initialized in selectCheat())
+	turns                int            stores the number of turns the game has been going for
+	hits                 int            stores the number of hits that the user has made
+    */
     private Console c;
     private Palette p;
     private Tools t;
@@ -13,9 +33,16 @@ public class PlayGame
     boolean cheat;
     int turns;
     int hits;
-
-    public PlayGame (Console cC, Palette cP, Tools cT)
-    {
+    
+    /*
+	Constructor for the PlayGame class
+	
+	Variable Name      Type       Description
+	cC                 Console    console passed from Battleship.java
+	cP                 Palette    palette passed from Battleship.java
+	cT                 Tools      tools passed from Battleship.java
+    */
+    public PlayGame (Console cC, Palette cP, Tools cT) {
 	c = cC;
 	p = cP;
 	t = cT;
@@ -31,7 +58,6 @@ public class PlayGame
     {
 	cheat = true;
     }
-
 
     public void play ()
     {
