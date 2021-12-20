@@ -217,9 +217,7 @@ public class EnemyBoard
 	}
     }
     
-    public void remaining(int nTurn, int nHit) {
-	String message; // message for hit or alive
-    
+    public void remaining(int nTurn, int nHit) {    
 	c.setColor(p.BOARD_BACKGROUND); // reset board console
 	c.fillRect(20, 280, 250, 170);
 
@@ -230,9 +228,14 @@ public class EnemyBoard
 	c.setFont (new Font ("Lucida Sans Typewriter Regular", 1, 20));
 	
 	for (int i = 1; i <= 5; i += 1) {
-	    if (shipSunk[i]) message = "SUNK";
-	    else message = "OPERATING";
-	    c.drawString(i + "x1 " + message, 30, 345 + i * 20);
+	    c.setColor(p.TEXT_GREEN);
+	    c.drawString(i + "x1 ", 30, 345 + i * 20);
+	    
+	    if (!shipSunk[i]) c.drawString("OPERATING", 100, 345 + i * 20);
+	    else {
+		c.setColor(Color.red); // change the colour for SUNK
+		c.drawString("SUNK", 100, 345 + i * 20);
+	    }
 	}
     }
 }
