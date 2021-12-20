@@ -87,5 +87,5 @@ public class Battleship
 	    else if (g.action == 3) g.leaderboard();
 	}
 	g.goodbye();*/
-    } 
+    }
 } 
