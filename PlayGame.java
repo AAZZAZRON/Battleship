@@ -57,10 +57,9 @@ public class PlayGame
 	    // only exit while loop if the user wants to hit and that square has not been hit yet
 	    while (!(key == ' ' && !enemy.visited [enemy.cursorX] [enemy.cursorY]))
 	    {
-		if (c.isCharAvail ()) // checks if any keys are in the buffer, this method was found on http://www.staugustinechs.ca/cadawas/hsa/console.html
+		if (c.isCharAvail ()) // checks if any keys are in the buffer, this method was found on http://www.staugustinechs.ca/cadawas/hsa/console.html also causes it to clear one key from the buffer
 		{
 		    key = c.getChar (); // grabs the key out of the buffer
-		    key = '\u0000'; // "eats" the key that was done during the enemy's turn
 		}
 		else
 		{
