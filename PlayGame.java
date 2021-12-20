@@ -42,6 +42,12 @@ public class PlayGame
 	
 	while (!finished) { // while the game isn't finished
 	    t.errorMessage("Your Turn!", "Your Turn", 1);
+	    
+	    /*
+		Problem Here with input caching stuffs
+	    */
+	    
+	    
 	    key = c.getChar();
 	    // only exit while loop if the user wants to hit and that square has not been hit yet
 	    while (!(key == ' ' && !enemy.visited[enemy.cursorX][enemy.cursorY])) {
@@ -115,12 +121,12 @@ public class PlayGame
 	int y = (int) (user.SIZE * Math.random());
 	boolean keepGoing = true;
 	while (keepGoing) {
-	    while (user.visited[x][y]) { // whilte the position has been visited, pick another position
+	    while (user.visited[x][y]) { // while the position has been visited, pick another position
 		x = (int) (user.SIZE * Math.random());
 		y = (int) (user.SIZE * Math.random());
 	    }
 	    if (!user.hit(x, y)) keepGoing = false;
-	    t.sleep(3000);
+	    t.sleep(3000); // delay so it's more realistic
 	}
     }
     
