@@ -45,26 +45,21 @@ public class PlayGame
 
 	enemy.remaining (turns, hits); // display which boats still need to be sunk
 
+	t.errorMessage ("Your Turn!", "Your Turn", 1);
 	while (!finished)
 	{ // while the game isn't finished
-	    t.errorMessage ("Your Turn!", "Your Turn", 1);
-
-	    /*
-		Problem Here with input caching stuffs
-	    */
-
-
 	    // only exit while loop if the user wants to hit and that square has not been hit yet
 	    while (!(key == ' ' && !enemy.visited [enemy.cursorX] [enemy.cursorY]))
 	    {
-		if (c.isCharAvail ()) // checks if any keys are in the buffer, this method was found on http://www.staugustinechs.ca/cadawas/hsa/console.html also causes it to clear one key from the buffer
-		{
+		// checks if any keys are in the buffer
+		// this method was found on http://www.staugustinechs.ca/cadawas/hsa/console.html
+		// if buffer contains a key, remove the key from the buffer
+		if (c.isCharAvail ()) {
 		    key = c.getChar (); // grabs the key out of the buffer
+		    key = '\u0000'; // resets the key
 		}
-		else
-		{
-		    key = c.getChar (); // when the buffer is cleared, ask the user for an input
-		}
+		else key = c.getChar (); // when the buffer is cleared, ask the user for an input
+		
 		if ("wasdWASD".indexOf (key) != -1)
 		{
 		    if (enemy.cheatsOn)
@@ -78,6 +73,7 @@ public class PlayGame
 	    {
 		t.errorMessage ("Enemy's Turn!", "Enemy's Turn", 1);
 		enemyTurn ();
+		t.errorMessage ("Your Turn!", "Your Turn", 1);
 	    }
 	}
     }
@@ -158,7 +154,7 @@ public class PlayGame
 	    }
 	    if (!user.hit (x, y))
 		keepGoing = false;
-	    t.sleep (3000); // delay so it's more realistic
+	    t.sleep (2000); // delay so it's more realistic
 	}
     }
 
