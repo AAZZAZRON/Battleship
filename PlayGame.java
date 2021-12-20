@@ -55,7 +55,8 @@ public class PlayGame
 		// this method was found on http://www.staugustinechs.ca/cadawas/hsa/console.html
 		// if buffer contains a key, remove the key from the buffer
 		if (c.isCharAvail ()) {
-		    key = c.getChar (); // pulls the key out of the buffer
+		    key = c.getChar (); // grabs the key out of the buffer
+		    key = '\u0000'; // resets the key
 		}
 		else key = c.getChar (); // when the buffer is cleared, ask the user for an input
 		
