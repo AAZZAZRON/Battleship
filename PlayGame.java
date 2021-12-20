@@ -100,6 +100,8 @@ public class PlayGame {
 	    } else {
 		hits += 1;
 	    }
+	    
+	    
 	}
     }
 
@@ -177,8 +179,7 @@ public class PlayGame {
 		x = (int) (user.SIZE * Math.random ());
 		y = (int) (user.SIZE * Math.random ());
 	    }
-	    if (!user.hit (x, y))
-		keepGoing = false;
+	    if (!user.hit (x, y)) keepGoing = false;
 	    t.sleep (2000); // delay so it's more realistic
 	}
     }
