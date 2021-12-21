@@ -87,7 +87,6 @@ public class Battleship
 
     public void startGame ()
     {
-	t.pauseProgram (0, 0, 50, "%", Color.black);
 	c.clear ();
 	PlayGame game = new PlayGame (c, p, t);
 	game.selectCheat ();

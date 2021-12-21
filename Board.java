@@ -1,9 +1,26 @@
-// The "Board" class.
+/*
+    Programmers: Aaron Zhu and James Huynh
+    Teacher: Ms. Krasteva
+    Date: January 14th, 2022
+    Description: Board class (creates a board for the user)
+*/
+
 import java.awt.*;
 import hsa.Console;
 
 public class Board
 {
+    /*
+	Variable Name        Type           Description
+	c                    Console        stores the console instance that was initialized in Battleship.java
+	p                    Palette        stores the palette instance that was initialized in Battleship.java
+	t                    Tools          stores the tools instance that was initialized in Battleship.java
+	visited              boolean[][]    stores if coordinate [x, y] has been hit
+	hasShip              int[][]        stores if coordinate [x, y] contains a ship
+					    stores the size of the ship at [x, y]
+	remaining            int            stores how many hits the enemy (computer) needs to make before they win
+	SIZE                 final int      how big the board is
+    */
     private Console c;
     private Palette p;
     private Tools t;
@@ -11,7 +28,15 @@ public class Board
     int[][] hasShip;
     int remaining;
     final int SIZE = 10;
-    
+
+    /*
+	Constructor for the Board class
+	
+	Variable Name      Type       Description
+	cC                 Console    console passed from Battleship.java
+	cP                 Palette    palette passed from Battleship.java
+	cT                 Tools      tools passed from Battleship.java
+    */
     public Board(Console cC, Palette cP, Tools cT) {
 	c = cC;
 	p = cP;
@@ -21,14 +46,40 @@ public class Board
 	remaining = 15;
     }
     
+    /*
+	Public method that generates a ship of size `size` onto the user's board
+	
+	Variable Name       Type        Description
+	size                int         parameter indicating the size of the ship we want to place
+	done                boolean     determines if the ship has been placed
+	x                   int         stores the top left x coordinate we try to place the ship at
+	y                   int         stores the top left y coordinate we try to place the ship at
+	dir                 int         stores the direction we are trying to place the ship (horizontal or vertical)
+	
+	While Loop 1:
+	    keeps trying to generate a ship until the generation is successful
+	For Loop 1:
+	    if dir is 0 (horizontal), check that no ships have been placed directly left and right of the place we want to place this ship
+	For Loop 2:
+	    if dir is 0 (horizontal), check that no ships have been placed directly above, on, and below of the place we want to place
+	For Loop 3:
+	    if dir is 0 (horizontal), and no ships are directly adjacent to it, place the ship onto the board (hasShip)
+	For Loop 4:
+	    if dir is 1 (vertical), check that no ships have been placed directly above and below of the place we want to place this ship
+	For Loop 5:
+	    if dir is 1 (vertical), check that no ships have been placed directly left, on, and right of the place we want to place
+	For Loop 6:
+	    if dir is 1 (vertical), and no ships are directly adjacent to it, place the ship onto the board (hasShip)
+    */
     public boolean generateShips(int size) {
-	if (size == 0) return true;
+	if (size == 0) return true; // return if 0 otherwise infinite recursion
 	boolean done = false;
+	int x, y, dir;
 	while (true) {
 	    done = true;
-	    int x = (int) (SIZE * Math.random());
-	    int y = (int) (SIZE * Math.random());
-	    int dir = (int) (2 * Math.random());
+	    x = (int) (SIZE * Math.random());
+	    y = (int) (SIZE * Math.random());
+	    dir = (int) (2 * Math.random());
 	    
 	    if (dir == 0 && y + size < SIZE) { // if horizontal and the ship fits on the board
 		// check that the ship squares are not occupied
@@ -65,6 +116,17 @@ public class Board
 	return generateShips(size - 1);
     }
     
+    /*
+	Method to hit the user's board at coordinate [x, y]
+	Although public, method is called in sink() to generate "white tokens" around the sunk ship
+	
+	Variable Name       Type        Description
+	x                   int         stores the x coordinate we want to hit
+	y                   int         stores the y coordinate we want to hit
+	
+	Draws a "token" at x, y (either red or white depending on hit or miss)
+	Returns if the coordinate we hit contained a ship
+    */
     public boolean hit(int x, int y) {
 	visited[x][y] = true; // visited
 	if (hasShip[x][y] == 0) c.setColor(Color.white); // set color
@@ -77,12 +139,41 @@ public class Board
 	return hasShip[x][y] != 0;
     }
     
+    /*
+	Private method to check if the boat containing cell [a, b] has been sunk (i.e. all spots have been hit)
+	Called in hit()
+	
+	Variable Name       Type        Description
+	a                   int         parameter storing the x coordinate that was hit
+	b                   int         parameter storing the y coordinate that was hit
+	bX                  int         stores the largest x coordinate that the ship is in
+	bY                  int         stores the largest y coordinate that the ship is in
+	x                   int         variable used to search for the full length of the ship
+	y                   int         variable used to search for the full length of the ship
+	hitC                int         stores the number of spots on the ship that have not been hit        
+    
+	While Loop 1:
+	    search downwards/rightwards for the bottommost coordinate of the ship
+	While Loop 2:
+	    search upwards/leftwards for the uppermost coordinate of the ship
+	For Loop 3:
+	    if the ship was sunk and is positioned vertically,
+	    mark adjacent left and right coordinates as visited
+	For Loop 4:
+	    if the ship was sunk and is positioned vertically,
+	    mark adjacent upper and lower coordinates as visited
+	For Loop 5:
+	    if the ship was sunk and is positioned horizontally,
+	    mark the adjacent upper and lower coordinates as visited
+	For Loop 6:
+	    if the ship was sunk and is positioned horizontally,
+	    mark the adjacent left and right coordinates as visited
+	*/
     private void sank(int a, int b) {
 	int bX, bY;
 	int x;
 	int y;
-	int dir;
-	int hitC = hasShip[a][b] - 1; // number of spots on the ship that have been hit
+	int hitC = hasShip[a][b] - 1; // number of spots on the ship that have not been hit
 	
 	// search downwards
 	x = a;
