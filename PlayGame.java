@@ -96,7 +96,7 @@ public class PlayGame {
 		turns += 1;
 		t.errorMessage ("Enemy's Turn!", "Enemy's Turn", 1);
 		enemyTurn ();
-		t.errorMessage ("Your Turn!", "Your Turn", 1);
+		if (user.remaining != 0) t.errorMessage ("Your Turn!", "Your Turn", 1);
 	    } else {
 		hits += 1;
 	    }
@@ -178,15 +178,15 @@ public class PlayGame {
 	int x = (int) (user.SIZE * Math.random ());
 	int y = (int) (user.SIZE * Math.random ());
 	boolean keepGoing = true;
-	while (keepGoing)
+	while (keepGoing && user.remaining != 0)
 	{
 	    while (user.visited [x] [y])
 	    { // while the position has been visited, pick another position
 		x = (int) (user.SIZE * Math.random ());
 		y = (int) (user.SIZE * Math.random ());
 	    }
-	    if (!user.hit (x, y)) keepGoing = false;
-	    t.sleep (2000); // delay so it's more realistic
+	    user.hit(x, y); // if (!user.hit (x, y)) keepGoing = false;
+	    t.sleep (500); // delay so it's more realistic
 	}
     }
 
