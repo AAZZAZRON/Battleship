@@ -236,14 +236,8 @@ public class EnemyBoard
 	int bX, bY;
 	int x;
 	int y;
-<<<<<<< Updated upstream
-	int dir;
-	int hitC = hasShip [cursorX] [cursorY] - 1; // number of spots on the ship that have been hit
-
-=======
 	int hitC = hasShip[cursorX][cursorY] - 1; // number of spots on the ship that have been hit
 	
->>>>>>> Stashed changes
 	// search downwards
 	x = cursorX;
 	y = cursorY;
