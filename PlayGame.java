@@ -222,8 +222,23 @@ public class PlayGame {
     }
 
 
-    public void storeScore ()
+    public void storeScore () throws IOException
     {
-
+	BufferedReader input;
+	PrintWriter output = new PrintWriter(new FileWriter("scores.txt"));
+	String name = t.inputMessage("give me name :D");
+	String line;
+	int fileL = 0;
+	
+	// get length of file
+	input = new BufferedReader(new FileReader("scores.txt"));
+	while (true) {
+	    line = input.readLine();
+	    if (line == null) break;
+	    fileL += 1;
+	}
+	
+	// sorting arrays found from https://www.javatpoint.com/how-to-sort-an-array-in-java
+	
     }
 }
