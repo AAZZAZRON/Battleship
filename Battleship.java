@@ -171,11 +171,11 @@ public class Battleship
 		catch (Exception e)
 		{
 		}
-		 t.errorMessage ("Scores wiped.","Scores wiped.",1);
+		t.errorMessage ("Scores wiped.", "Scores wiped.", 1);
 	    }
 	    else
 	    {
-		t.errorMessage ("Wipe aborted.","Wipe aborted.",1);
+		t.errorMessage ("Wipe aborted.", "Wipe aborted.", 1);
 	    }
 	}
     }
