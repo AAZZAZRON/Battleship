@@ -59,6 +59,19 @@ public class PlayGame {
 	cheat = true;
     }
 
+    /*
+	Public method to run the "game logic"           
+
+	Variable Name         Type         Description
+	key                   char         stores the key that the user pressed
+					   used to move user's cursor, hit ships, etc.
+	
+	While Loop 1:
+	    constantly runs the user's move, then the computer's move, until one of the two wins
+	While Loop 2:
+	    constantly get user input until they choose to hit a square, [cursorX, cursorY], and 
+	    that square has not been hit already
+    */
     public boolean play ()
     {
 	char key = '\u0000'; // local variable to score keypressed
@@ -111,7 +124,25 @@ public class PlayGame {
 	}
     }
 
+    /*
+	Private method to draw the "canvas" that the game will be hosted on
+	Called in playGame()
 
+	Variable Name         Type              Description
+	checked               boolean[]         stores if ship[i] has been drawn to teh console
+	val                   int               temporary storage for the ship located at the current coordinate
+	BUFF                  final int         constant the startX and startY of the user's board on the console
+	GRID_SIZE             final int         constant representing the size of a coordinate on the console
+
+	For Loop 1:
+	    draws the 10x10 grid, representing the user's battleship board
+	For Loop 2:
+	    draws the 10x10 grid, representing the enemy's battleship board
+	For Loop 3:
+	    loop through all the rows of the user's board, to draw the user's ships
+	For Loop 4:
+	    loop through all the columns of the user's board, to draw the user's ships      
+    */
     private void drawBackground ()
     {
 	// graphics for game
@@ -152,8 +183,8 @@ public class PlayGame {
 	boolean[] checked = new boolean [6]; // if ship size i has been drawn yet
 	int val;
 	checked [0] = true;
-	int buff = 30; // buffer
-	int gridSize = 23;
+	final int BUFF = 30; // buffer
+	final int GRID_SIZE = 23;
 
 	for (int i = 0 ; i < user.SIZE ; i += 1)
 	{ // traverse grid
@@ -164,9 +195,9 @@ public class PlayGame {
 		{ // if it is a ship that has not been drawn yet
 		    checked [val] = true; // mark that it has been drawn
 		    if (i + 1 != user.SIZE && user.hasShip [i + 1] [j] == val)
-			c.fillOval (buff + gridSize * i, buff + gridSize * j, gridSize * val, gridSize);
+			c.fillOval (BUFF + GRID_SIZE * i, BUFF + GRID_SIZE * j, GRID_SIZE * val, GRID_SIZE);
 		    else
-			c.fillOval (buff + gridSize * i, buff + gridSize * j, gridSize, gridSize * val);
+			c.fillOval (BUFF + GRID_SIZE * i, BUFF + GRID_SIZE * j, GRID_SIZE, GRID_SIZE * val);
 		}
 	    }
 	}
