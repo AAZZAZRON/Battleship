@@ -105,7 +105,7 @@ public class EnemyBoard
 	if (hasShip [cursorX] [cursorY] == 0)
 	    c.setColor (Color.white);                                    // set color
 	else
-	    c.setColor (Color.red);
+	    c.setColor (p.MARKER_RED);
 	c.fillOval (311 + 47 * cursorX, 51 + 47 * cursorY, 25, 25); // draw "hit"
 	if (hasShip [cursorX] [cursorY] != 0)
 	    sank ();                                    // if hit, check if it sank a ship
@@ -132,7 +132,7 @@ public class EnemyBoard
 	    if (visited [cursorX] [cursorY])
 	    {
 		if (hasShip [cursorX] [cursorY] != 0)
-		    c.setColor (Color.red);
+		    c.setColor (p.MARKER_RED);
 		else
 		    c.setColor (Color.white);
 		c.fillOval (311 + 47 * cursorX, 51 + 47 * cursorY, 25, 25); // draw "hit"
@@ -197,7 +197,7 @@ public class EnemyBoard
 		    // draw hits on top of ship
 		    if (hasShip [i] [j] != 0 && visited [i] [j])
 		    {
-			c.setColor (Color.red);
+			c.setColor (p.MARKER_RED);
 			c.fillOval (311 + 47 * i, 51 + 47 * j, 25, 25); // draw "hit"
 		    }
 		}
@@ -219,7 +219,7 @@ public class EnemyBoard
 			c.drawRect (300 + 47 * i, 40 + 47 * j, 47, 47);
 			if (visited [i] [j])
 			{
-			    c.setColor (Color.red);
+			    c.setColor (p.MARKER_RED);
 			    c.fillOval (311 + 47 * i, 51 + 47 * j, 25, 25); // draw "hit"
 			}
 		    }

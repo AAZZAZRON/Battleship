@@ -85,7 +85,7 @@ public class Battleship
     }
 
 
-    public void startGame ()
+    public void startGame () throws IOException
     {
 	c.clear ();
 	PlayGame game = new PlayGame (c, p, t);
@@ -171,11 +171,10 @@ public class Battleship
 		catch (Exception e)
 		{
 		}
-		t.errorMessage ("Scores wiped.", "Scores wiped.", 1);
 	    }
 	    else
 	    {
-		t.errorMessage ("Wipe aborted.", "Wipe aborted.", 1);
+		t.errorMessage ("Wipe aborted.","Wipe aborted.",1);
 	    }
 	}
     }
@@ -201,7 +200,6 @@ public class Battleship
     public static void main (String[] args) throws IOException
     {
 	Battleship g = new Battleship ();
-	// g.startGame ();
 	// g.runSplash();
 	while (g.action != 4)
 	{

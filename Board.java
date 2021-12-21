@@ -130,7 +130,7 @@ public class Board
     public boolean hit(int x, int y) {
 	visited[x][y] = true; // visited
 	if (hasShip[x][y] == 0) c.setColor(Color.white); // set color
-	else c.setColor(Color.red);
+	else c.setColor(p.MARKER_RED);
 	c.fillOval(36 + 23 * x, 36 + 23 * y, 11, 11); // draw "hit"
 	if (hasShip[x][y] != 0) {
 	    remaining -= 1;
