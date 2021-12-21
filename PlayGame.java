@@ -216,8 +216,8 @@ public class PlayGame {
 		x = (int) (user.SIZE * Math.random ());
 		y = (int) (user.SIZE * Math.random ());
 	    }
-	    user.hit(x, y); // if (!user.hit (x, y)) keepGoing = false;
-	    t.sleep (500); // delay so it's more realistic
+	    if (!user.hit (x, y)) keepGoing = false;
+	    t.sleep (2000); // delay so it's more realistic
 	}
     }
 
