@@ -197,7 +197,7 @@ public class EnemyBoard
 		// check that the ship squares are not occupied
 		for (int i = Math.max(0, x - 1); i <= Math.min(9, x + 1); i += 1) {
 		    if (y != 0) hit(i, y - 1); // hit left
-		    hit(i, y + hasShip[cursorX][cursorY]); // hit right
+		    if (y + hasShip[cursorX][cursorY] < SIZE) hit(i, y + hasShip[cursorX][cursorY]); // hit right
 		}
 		for (int i = y; i < y + hasShip[cursorX][cursorY]; i += 1) {
 		    if (x != 0) hit(x - 1, i); // hit above
@@ -207,7 +207,7 @@ public class EnemyBoard
 		// check that the ship squares are not occupied
 		for (int i = Math.max(0, y - 1); i <= Math.min(9, y + 1); i += 1) {
 		    if (x != 0) hit(x - 1, i); // hit above
-		    hit(x + hasShip[cursorX][cursorY], i); // hit below
+		    if (x + hasShip[cursorX][cursorY] < SIZE) hit(x + hasShip[cursorX][cursorY], i); // hit below
 		}
 		for (int i = x; i < x + hasShip[cursorX][cursorY]; i += 1) {
 		    if (y != 0) hit(i, y - 1); // hit left
