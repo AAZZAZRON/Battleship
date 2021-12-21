@@ -172,6 +172,7 @@ public class Battleship
 		catch (Exception e)
 		{
 		}
+		 t.errorMessage ("Scores wiped.","Scores wiped.",1);
 	    }
 	    else
 	    {
