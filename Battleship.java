@@ -158,19 +158,24 @@ public class Battleship
 	String button = String.valueOf (c.getChar ());
 	if (button.equals (" "))
 	{
-	    String user = t.inputMessage ("Are you sure? Enter \"abc!!\" to continue.");
-	    if (user.equals ("abc!!"))
+	    String user = t.inputMessage ("Are you sure? Enter \"ICS3UPisAw3some!\" to continue.");
+	    if (user.equals ("ICS3UPisAw3some!"))
 	    {
 		try
 		{
-		    PrintWriter wipe = new PrintWriter(new FileWriter("scores.txt"));
-		    for(int i = 0; i < 10; i++){
-			wipe.println("");
+		    PrintWriter wipe = new PrintWriter (new FileWriter ("scores.txt"));
+		    for (int i = 0 ; i < 10 ; i++)
+		    {
+			wipe.println ("");
 		    }
 		}
 		catch (Exception e)
 		{
 		}
+	    }
+	    else
+	    {
+		t.errorMessage ("Wipe aborted.","Wipe aborted.",1);
 	    }
 	}
     }
