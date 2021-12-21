@@ -160,6 +160,7 @@ public class EnemyBoard
     }
     
     private void sank() {
+	int bX, bY;
 	int x;
 	int y;
 	int dir;
@@ -174,6 +175,8 @@ public class EnemyBoard
 	    else break;
 	    if (visited[x][y]) hitC -= 1;
 	}
+	bX = x; // store the right/bottommost square of the ship
+	bY = y;
 	
 	// search upwards
 	x = cursorX;
@@ -191,15 +194,14 @@ public class EnemyBoard
 	    
 	    // mark ship as sunk
 	    shipSunk[hasShip[cursorX][cursorY]] = true;
-	    
 	    // mark all surrounding coordinates as "visited"
-	    if (x - cursorX == 0) { // if ship is horizontal
+	    if (x == bX) { // if ship is vertical
 		// check that the ship squares are not occupied
 		for (int i = Math.max(0, x - 1); i <= Math.min(9, x + 1); i += 1) {
 		    if (y != 0) hit(i, y - 1); // hit left
 		    if (y + hasShip[cursorX][cursorY] < SIZE) hit(i, y + hasShip[cursorX][cursorY]); // hit right
 		}
-		for (int i = y; i < y + hasShip[cursorX][cursorY]; i += 1) {
+		for (int i = y; i < y + hasShip[cursorX][cursorY]; i += 1) {                    
 		    if (x != 0) hit(x - 1, i); // hit above
 		    if (x != 9) hit(x + 1, i); // hit below
 		}

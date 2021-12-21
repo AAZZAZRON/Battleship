@@ -78,6 +78,7 @@ public class Board
     }
     
     private void sank(int a, int b) {
+	int bX, bY;
 	int x;
 	int y;
 	int dir;
@@ -92,6 +93,8 @@ public class Board
 	    else break;
 	    if (visited[x][y]) hitC -= 1;
 	}
+	bX = x;
+	bY = y;
 	
 	// search upwards
 	x = a;
@@ -108,7 +111,7 @@ public class Board
 	    t.errorMessage("YOUR " + hasShip[a][b] + "x1 HAS BEEN SUNK", "SUNK", 2);
 	    
 	    // mark all surrounding coordinates as "visited"
-	    if (x - a == 0) { // if ship is horizontal
+	    if (x == bX) { // if ship is vertical
 		// check that the ship squares are not occupied
 		for (int i = Math.max(0, x - 1); i <= Math.min(9, x + 1); i += 1) {
 		    if (y != 0) hit(i, y - 1); // hit left
@@ -131,7 +134,4 @@ public class Board
 	    }
 	}
     }
-    
-    
-
 }

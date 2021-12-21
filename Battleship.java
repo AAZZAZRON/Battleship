@@ -54,12 +54,19 @@ public class Battleship
     }
     
     public void startGame() {
-	t.pauseProgram(0, 0, 50, "%");
+	t.pauseProgram(0, 0, 50, "%", Color.black);
 	c.clear();
 	PlayGame game = new PlayGame(c, p, t);
 	game.selectCheat();
-	game.play();
-	game.storeScore();
+	boolean userWin = game.play();
+	if (userWin && !game.cheat) game.storeScore();
+	
+	// pause program/return to main menu
+	c.setColor(p.CONSOLE_GRAY);
+	c.fillRect(10, 200, 800, 140);
+	c.setColor(p.BOARD_BACKGROUND);
+	c.fillRect(20, 210, 765, 120);
+	t.pauseProgram(120, 280, 30, "Press any key to return to main menu...", p.TEXT_GREEN);
     }
     
     public void instructions() {

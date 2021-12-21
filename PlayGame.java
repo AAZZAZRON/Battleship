@@ -59,7 +59,7 @@ public class PlayGame {
 	cheat = true;
     }
 
-    public void play ()
+    public boolean play ()
     {
 	char key = '\u0000'; // local variable to score keypressed
 
@@ -100,8 +100,14 @@ public class PlayGame {
 	    } else {
 		hits += 1;
 	    }
-	    
-	    
+	    if (hits == 15 || user.remaining == 0) finished = true; // exit game is over
+	}
+	if (hits == 15) {
+	    t.errorMessage("Nice! You found all the ships in " + turns + " moves.", "SUCCESS", 1);
+	    return true; // user won
+	} else {
+	    t.errorMessage("Aww... The enemy has sunk all your ships.", "FAIL", 1);
+	    return false;
 	}
     }
 

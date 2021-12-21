@@ -37,9 +37,9 @@ public class Tools
     size                  int          The size of the font to draw
     message               String       The message drawn.
     */
-    public void pauseProgram (int x, int y, int size, String message)
+    public void pauseProgram (int x, int y, int size, String message, Color col)
     {
-	c.setColor (Color.black);
+	c.setColor (col);
 	c.setFont (new Font ("Lucida Sans Typewriter Regular", 1, size));
 	c.drawString (message, x, y);
 	c.getChar ();
