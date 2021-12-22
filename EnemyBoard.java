@@ -318,15 +318,18 @@ public class EnemyBoard
     }
 
 
-    public void remaining (int nTurn, int nHit)
+    public void remaining (int nTurn, int nHit, int nScore)
     {
 	c.setColor (p.BOARD_BACKGROUND); // reset board console
 	c.fillRect (20, 280, 250, 170);
 
 	c.setColor (p.TEXT_GREEN);
 	c.setFont (new Font ("Lucida Sans Typewriter Regular", 1, 25));
-	c.drawString ("Turns: " + nTurn, 30, 315);
-	c.drawString ("Hits: " + nHit, 30, 340);
+	c.drawString ("Turns: " + nTurn, 30, 310);
+	c.drawString ("Hits: " + nHit, 30, 335);
+	c.drawString("Score: ", 170, 310);
+	c.drawString("" + nScore, 170, 335);
+	
 	c.setFont (new Font ("Lucida Sans Typewriter Regular", 1, 20));
 
 	for (int i = 1 ; i <= 5 ; i += 1)

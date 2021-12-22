@@ -55,7 +55,7 @@ public class PlayGame
 	finished = false;
 	turns = 1;
 	hits = 0;
-	score = 0;
+	score = 2500;
     }
 
 
@@ -87,11 +87,12 @@ public class PlayGame
 
 	drawBackground (); // draw board
 	enemy.moveCursor ('q'); // draw the cursor at [0, 0]
+	enemy.remaining (turns, hits, score); // draw default stats
 
 	t.errorMessage ("Your Turn!", "Your Turn", 1);
 	while (!finished)
 	{ // while the game isn't finished
-	    enemy.remaining (turns, hits);
+	    enemy.remaining (turns, hits, score);
 	    // only exit while loop if the user wants to hit and that square has not been hit yet
 	    while (!(key == ' ' && !enemy.visited [enemy.cursorX] [enemy.cursorY]))
 	    {
@@ -117,16 +118,18 @@ public class PlayGame
 	    }
 	    if (!enemy.hit ())
 	    {
-		turns += 1;
+		score -= 25;
+		enemy.remaining(turns, hits, score);
 		t.errorMessage ("Enemy's Turn!", "Enemy's Turn", 1);
 		enemyTurn ();
+		turns += 1;
 		if (user.remaining != 0)
 		    t.errorMessage ("Your Turn!", "Your Turn", 1);
 	    }
 	    else
 	    {
 		hits += 1;
-		score += (100 - hits - turns);
+		score += 25 + 2 * (int) (21 * Math.random() + 1); // 150 for every hit + RNG
 	    }
 	    if (hits == 15 || user.remaining == 0)
 		finished = true;                                        // exit game is over
