@@ -23,6 +23,7 @@ public class PlayGame {
 	cheat                boolean        stores if the user is playing in cheat mode (initialized in selectCheat())
 	turns                int            stores the number of turns the game has been going for
 	hits                 int            stores the number of hits that the user has made
+	score                int            stores the score of the user
     */
     private Console c;
     private Palette p;
@@ -33,6 +34,7 @@ public class PlayGame {
     boolean cheat;
     int turns;
     int hits;
+    int score;
     
     /*
 	Constructor for the PlayGame class
@@ -51,6 +53,7 @@ public class PlayGame {
 	finished = false;
 	turns = 1;
 	hits = 0;
+	score = 0;
     }
 
 
@@ -112,6 +115,7 @@ public class PlayGame {
 		if (user.remaining != 0) t.errorMessage ("Your Turn!", "Your Turn", 1);
 	    } else {
 		hits += 1;
+		score += (100 - hits);
 	    }
 	    if (hits == 15 || user.remaining == 0) finished = true; // exit game is over
 	}
@@ -229,16 +233,46 @@ public class PlayGame {
 	String name = t.inputMessage("give me name :D");
 	String line;
 	int fileL = 0;
+	String[] names = new String[12];
+	int[] scores = new int[12];
+	int buffer = 0;
+	String lbName;
+	int lbScore;
 	
 	// get length of file
 	input = new BufferedReader(new FileReader("scores.txt"));
 	while (true) {
-	    line = input.readLine();
+	    line = input.readLine(); // name
 	    if (line == null) break;
+	    line = input.readLine(); // score
 	    fileL += 1;
 	}
+	// insert score into what we have
+	input = new BufferedReader(new FileReader("scores.txt"));
+	for (int i = 0; i < fileL; i += 1) {
+	    lbName = input.readLine();
+	    lbScore = Integer.parseInt(input.readLine());
+	    if (buffer != 1 && score > lbScore) { // insert user's score
+		scores[i] = score;
+		names[i] = name;
+		buffer += 1;
+	    }
+	    scores[i + buffer] = lbScore;
+	    names[i + buffer] = lbName;
+	    
+	}
+	if (buffer == 0) {
+	    scores[fileL] = score;
+	    names[fileL] = name;
+	    if (fileL != 10) buffer += 1;
+	}
 	
-	// sorting arrays found from https://www.javatpoint.com/how-to-sort-an-array-in-java
-	
+	if (buffer == 1) t.errorMessage("Your score made it onto the leaderboard!", "CONGRAGULATIONS", 1);
+	for (int i = 0; i < Math.min(10, fileL + 1); i += 1) {
+	    output.println(names[i]);
+	    output.println(scores[i]);
+	}
+	input.close();
+	output.close();        
     }
 }

@@ -91,7 +91,7 @@ public class Battleship
 	PlayGame game = new PlayGame (c, p, t);
 	game.selectCheat ();
 	boolean userWin = game.play ();
-	if (userWin && !game.cheat)
+	//if (userWin && !game.cheat)
 	    game.storeScore ();
 
 	// pause program/return to main menu
@@ -125,7 +125,7 @@ public class Battleship
     }
 
 
-    public void leaderboard ()
+    public void leaderboard () throws IOException
     {
 	c.clear ();
 	c.setColor (p.SKY_BLUE);
@@ -138,27 +138,22 @@ public class Battleship
 	c.drawString ("Player Name", 100, 100);
 	c.drawString ("Score", 500, 100);
 	c.setFont (new Font ("Lucida Sans Typewriter Regular", Font.BOLD, 20));
-	try
+	
+	BufferedReader input = new BufferedReader (new FileReader ("scores.txt"));
+	for (int i = 0 ; i < 10 ; i++)
 	{
-	    BufferedReader input = new BufferedReader (new FileReader ("scores.txt"));
-	    for (int i = 0 ; i < 10 ; i++)
-	    {
-		String line = input.readLine ();
-		String[] data = line.split (" ");
-		c.drawString (data [0], 100, 130 + (i * 25));
-		c.drawString (data [1], 500, 130 + (i * 25));
-	    }
-	}
-	catch (Exception e)
-	{
+	    String name = input.readLine();
+	    int score = Integer.parseInt(input.readLine());
+	    c.drawString (name, 100, 130 + (i * 25));
+	    c.drawString ("" + score, 500, 130 + (i * 25));
 	}
 	c.drawString ("Press any key to exit.", 280, 400);
 	c.drawString ("Press space to clear scores.", 250, 425);
 	String button = String.valueOf (c.getChar ());
 	if (button.equals (" "))
 	{
-	    String user = t.inputMessage ("Are you sure? Enter \"ICS3UPisAw3some!\" to continue.");
-	    if (user.equals ("ICS3UPisAw3some!"))
+	    String confirmation = t.inputMessage ("Are you sure? Enter \"ICS3UPisAw3some!\" to continue.");
+	    if (confirmation.equals ("ICS3UPisAw3some!"))
 	    {
 		try
 		{
