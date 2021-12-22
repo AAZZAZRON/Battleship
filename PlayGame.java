@@ -126,7 +126,7 @@ public class PlayGame
 	    else
 	    {
 		hits += 1;
-		score += (100 - hits);
+		score += (100 - hits - turns);
 	    }
 	    if (hits == 15 || user.remaining == 0)
 		finished = true;                                        // exit game is over
