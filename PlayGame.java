@@ -241,7 +241,7 @@ public class PlayGame
 	    }
 	    if (!user.hit (x, y))
 		keepGoing = false;
-	    t.sleep (2000); // delay so it's more realistic
+	    t.sleep (500); // delay so it's more realistic
 	}
     }
 
