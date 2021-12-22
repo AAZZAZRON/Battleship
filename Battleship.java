@@ -89,17 +89,33 @@ public class Battleship
     {
 	c.clear ();
 	PlayGame game = new PlayGame (c, p, t);
-	game.selectCheat ();
-	boolean userWin = game.play ();
-	//if (userWin && !game.cheat)
-	game.storeScore ();
+	c.setColor (p.SKY_BLUE);
+	c.fillRect (0, 0, 800, 350);
+	c.setColor (p.OCEAN_BLUE);
+	c.fillRect (0, 350, 800, 300);
+	c.setFont (new Font ("Lucida Sans Typewriter Regular", Font.BOLD, 25));
+	c.setColor (Color.white);
+	c.drawString ("BATTLESHIP", 320, 50);
+	c.drawString ("Press \"Y\" if you want to enter cheat mode.", 150, 100);
+	c.drawString ("Press \"N\" if you do not want to enter cheat mode.", 120, 150);
+	c.drawString ("Press any other key to go back.", 220, 200);
+	String input = String.valueOf (c.getChar ());
+	if (input.equalsIgnoreCase ("y") || input.equalsIgnoreCase ("n"))
+	{
+	    if (input.equalsIgnoreCase ("y"))
+		game.selectCheat ();
+	    boolean userWin = game.play ();
+	    if (userWin && !game.cheat)
+		game.storeScore ();
+	    // pause program/return to main menu
+	    c.setColor (p.CONSOLE_GRAY);
+	    c.fillRect (10, 200, 800, 140);
+	    c.setColor (p.BOARD_BACKGROUND);
+	    c.fillRect (20, 210, 765, 120);
+	    t.pauseProgram (120, 280, 30, "Press any key to return to main menu...", p.TEXT_GREEN);
+	}
 
-	// pause program/return to main menu
-	c.setColor (p.CONSOLE_GRAY);
-	c.fillRect (10, 200, 800, 140);
-	c.setColor (p.BOARD_BACKGROUND);
-	c.fillRect (20, 210, 765, 120);
-	t.pauseProgram (120, 280, 30, "Press any key to return to main menu...", p.TEXT_GREEN);
+
     }
 
 
@@ -150,7 +166,7 @@ public class Battleship
 		c.drawString ("" + score, 500, 130 + (i * 25));
 	    }
 	}
-	input.close();
+	input.close ();
 	c.drawString ("Press any key to exit.", 280, 400);
 	c.drawString ("Press space to clear scores.", 250, 425);
 	String button = String.valueOf (c.getChar ());
