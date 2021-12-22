@@ -199,7 +199,7 @@ public class Battleship
     public static void main (String[] args) throws IOException
     {
 	Battleship g = new Battleship ();
-	// g.runSplash();
+	g.runSplash();
 	while (g.action != 4)
 	{
 	    g.runMenu ();
