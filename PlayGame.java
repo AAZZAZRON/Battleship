@@ -245,7 +245,6 @@ public class PlayGame
 
     public void storeScore () throws IOException
     {
-	PrintWriter output = new PrintWriter (new FileWriter ("scores.txt"));
 	String name = t.inputMessage ("give me name :D");
 	int fileL = 0;
 	String[] names = new String [12];
@@ -256,17 +255,18 @@ public class PlayGame
 
 	// get length of file
 	BufferedReader inp = new BufferedReader (new FileReader ("scores.txt"));
-	String line = "";
-	System.out.println (inp.readLine());
 	while (true)
 	{
-	    line = inp.readLine (); // name
-	    System.out.println (line);
-	    if (line == null)
+	    String line = inp.readLine (); // name
+	    if (line != null)
+	    {
+		line = inp.readLine (); // score
+		fileL++;
+	    }
+	    else
+	    {
 		break;
-	    line = inp.readLine (); // score
-	    fileL++;
-	    System.out.println ("read a line");
+	    }
 	}
 
 	inp.close ();
@@ -295,12 +295,13 @@ public class PlayGame
 	}
 	if (buffer == 1)
 	    t.errorMessage ("Your score made it onto the leaderboard!", "CONGRAGULATIONS", 1);
+	input.close ();
+	PrintWriter output = new PrintWriter (new FileWriter ("scores.txt"));
 	for (int i = 0 ; i < Math.min (10, fileL + 1) ; i += 1)
 	{
 	    output.println (names [i]);
 	    output.println (scores [i]);
 	}
-	input.close ();
 	output.close ();
     }
 }
