@@ -1,10 +1,2 @@
-Maplefin
-999999
-AZron
-3225
-one
-1380
-two
-1000
-three
-690
+AZron-real
+1269

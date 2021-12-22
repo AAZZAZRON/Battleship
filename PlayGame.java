@@ -61,7 +61,25 @@ public class PlayGame
 
     public void selectCheat ()
     {
-	cheat = true;
+	char input;
+	c.setColor (p.SKY_BLUE);
+	c.fillRect (0, 0, 800, 350);
+	c.setColor (p.OCEAN_BLUE);
+	c.fillRect (0, 350, 800, 300);
+	c.setFont (new Font ("Lucida Sans Typewriter Regular", Font.BOLD, 25));
+	c.setColor (Color.white);
+	c.drawString ("BATTLESHIP", 320, 50);
+	c.drawString ("Press \"Y\" if you want to enter cheat mode.", 150, 100);
+	c.drawString ("Press \"N\" if you do not want to enter cheat mode.", 120, 150);
+	c.drawString ("Press any \"E\" to return to main menu.", 220, 200);
+	input = c.getChar();
+	while ("YyNnEe".indexOf(input) == -1) {
+	    t.errorMessage("Please enter a valid option.", "INVALID INPUT", 0);
+	    input = c.getChar();
+	}
+	if (input == 'y' || input == 'Y') cheat = true;
+	else if (input == 'n' || input == 'N') cheat = false;
+	else finished = true;
     }
 
 
@@ -168,6 +186,8 @@ public class PlayGame
     */
     private void drawBackground ()
     {
+	c.clear();
+	
 	// graphics for game
 	c.setColor (p.CONSOLE_GRAY);
 	c.fillRect (10, 10, 800, 540);
