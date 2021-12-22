@@ -249,6 +249,7 @@ public class PlayGame
 
     private void enemyTurn ()
     {
+	t.sleep(1000);
 	int x = (int) (user.SIZE * Math.random ());
 	int y = (int) (user.SIZE * Math.random ());
 	boolean keepGoing = true;
@@ -261,7 +262,8 @@ public class PlayGame
 	    }
 	    if (!user.hit (x, y))
 		keepGoing = false;
-	    t.sleep (500); // delay so it's more realistic
+	    if (keepGoing && user.remaining != 0) t.sleep (2000); // delay so it's more realistic
+	    else t.sleep(1000); // short delay since turn is over
 	}
     }
 

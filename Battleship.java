@@ -153,28 +153,26 @@ public class Battleship
 	input.close ();
 	c.drawString ("Press any key to exit.", 280, 400);
 	c.drawString ("Press space to clear scores.", 250, 425);
-	String button = String.valueOf (c.getChar ());
-	if (button.equals (" "))
-	{
-	    String confirmation = t.inputMessage ("Are you sure? Enter \"ICS3UPisAw3some!\" to continue.");
-	    if (confirmation != null && confirmation.equals ("ICS3UPisAw3some!"))
+	while (true) {
+	    String button = String.valueOf (c.getChar ());
+	    if (button.equals (" "))
 	    {
-		try
+		String confirmation = t.inputMessage ("Are you sure? Enter \"ICS3UPisAw3some!\" to wipe the leaderboard.");
+		if (confirmation != null && confirmation.equals ("ICS3UPisAw3some!"))
 		{
 		    PrintWriter wipe = new PrintWriter (new FileWriter ("scores.txt"));
-		    for (int i = 0 ; i < 20 ; i++)
-		    {
-			wipe.println ("");
-		    }
+		    wipe.println("");
+		    t.errorMessage("Wiped!", "Wiped.", 1);
+		    
+		    // wipe
+		    c.setColor (p.OCEAN_BLUE);
+		    c.fillRect(100, 130, 250, 250);
 		}
-		catch (Exception e)
+		else
 		{
+		    t.errorMessage ("Wipe aborted.", "Wipe aborted.", 1);
 		}
-	    }
-	    else
-	    {
-		t.errorMessage ("Wipe aborted.", "Wipe aborted.", 1);
-	    }
+	    } else break;
 	}
     }
 
@@ -199,9 +197,10 @@ public class Battleship
     public static void main (String[] args) throws IOException
     {
 	Battleship g = new Battleship ();
-	g.runSplash();
+	// g.runSplash();
 	while (g.action != 4)
 	{
+	    g.action = 0; // reset
 	    g.runMenu ();
 	    if (g.action == 1)
 		g.startGame ();
