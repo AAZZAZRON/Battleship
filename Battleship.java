@@ -150,6 +150,7 @@ public class Battleship
 		c.drawString ("" + score, 500, 130 + (i * 25));
 	    }
 	}
+	input.close();
 	c.drawString ("Press any key to exit.", 280, 400);
 	c.drawString ("Press space to clear scores.", 250, 425);
 	String button = String.valueOf (c.getChar ());

@@ -3,7 +3,7 @@
     Teacher: Ms. Krasteva
     Date: January 14th, 2022
     Description: PlayGame.java
-    
+
     Controls the game flow/logic for Battleship
 */
 
@@ -11,7 +11,8 @@ import java.awt.*;
 import java.io.*;
 import hsa.Console;
 
-public class PlayGame {
+public class PlayGame
+{
     /*
 	Variable Name        Type           Description
 	c                    Console        stores the console instance that was initialized in Battleship.java
@@ -35,16 +36,17 @@ public class PlayGame {
     int turns;
     int hits;
     int score;
-    
+
     /*
 	Constructor for the PlayGame class
-	
+
 	Variable Name      Type       Description
 	cC                 Console    console passed from Battleship.java
 	cP                 Palette    palette passed from Battleship.java
 	cT                 Tools      tools passed from Battleship.java
     */
-    public PlayGame (Console cC, Palette cP, Tools cT) {
+    public PlayGame (Console cC, Palette cP, Tools cT)
+    {
 	c = cC;
 	p = cP;
 	t = cT;
@@ -62,17 +64,18 @@ public class PlayGame {
 	cheat = true;
     }
 
+
     /*
-	Public method to run the "game logic"           
+	Public method to run the "game logic"
 
 	Variable Name         Type         Description
 	key                   char         stores the key that the user pressed
 					   used to move user's cursor, hit ships, etc.
-	
+
 	While Loop 1:
 	    constantly runs the user's move, then the computer's move, until one of the two wins
 	While Loop 2:
-	    constantly get user input until they choose to hit a square, [cursorX, cursorY], and 
+	    constantly get user input until they choose to hit a square, [cursorX, cursorY], and
 	    that square has not been hit already
     */
     public boolean play ()
@@ -86,47 +89,60 @@ public class PlayGame {
 	enemy.moveCursor ('q'); // draw the cursor at [0, 0]
 
 	t.errorMessage ("Your Turn!", "Your Turn", 1);
-	while (!finished) { // while the game isn't finished
-	    enemy.remaining(turns, hits);
+	while (!finished)
+	{ // while the game isn't finished
+	    enemy.remaining (turns, hits);
 	    // only exit while loop if the user wants to hit and that square has not been hit yet
 	    while (!(key == ' ' && !enemy.visited [enemy.cursorX] [enemy.cursorY]))
 	    {
 		// checks if any keys are in the buffer
 		// this method was found on http://www.staugustinechs.ca/cadawas/hsa/console.html
 		// if buffer contains a key, remove the key from the buffer
-		if (c.isCharAvail ()) {
+		if (c.isCharAvail ())
+		{
 		    key = c.getChar (); // grabs the key out of the buffer
 		    key = '\u0000'; // resets the key
 		}
-		else key = c.getChar (); // when the buffer is cleared, ask the user for an input
-		
+		else
+		    key = c.getChar ();      // when the buffer is cleared, ask the user for an input
+
 		if ("wasdWASD".indexOf (key) != -1)
 		{
-		    if (enemy.cheatsOn) enemy.toggleCheat (); // turn off cheats
+		    if (enemy.cheatsOn)
+			enemy.toggleCheat ();                     // turn off cheats
 		    enemy.moveCursor (key); // if key is directional, move cursor
 		}
-		else if (key == 'c' && cheat) enemy.toggleCheat (); // if key is cheat and cheats are on, turn on/off cheats
+		else if (key == 'c' && cheat)
+		    enemy.toggleCheat ();                               // if key is cheat and cheats are on, turn on/off cheats
 	    }
 	    if (!enemy.hit ())
 	    {
 		turns += 1;
 		t.errorMessage ("Enemy's Turn!", "Enemy's Turn", 1);
 		enemyTurn ();
-		if (user.remaining != 0) t.errorMessage ("Your Turn!", "Your Turn", 1);
-	    } else {
+		if (user.remaining != 0)
+		    t.errorMessage ("Your Turn!", "Your Turn", 1);
+	    }
+	    else
+	    {
 		hits += 1;
 		score += (100 - hits);
 	    }
-	    if (hits == 15 || user.remaining == 0) finished = true; // exit game is over
+	    if (hits == 15 || user.remaining == 0)
+		finished = true;                                        // exit game is over
 	}
-	if (hits == 15) {
-	    t.errorMessage("Nice! You found all the ships in " + turns + " moves.", "SUCCESS", 1);
+	if (hits == 15)
+	{
+	    t.errorMessage ("Nice! You found all the ships in " + turns + " moves.", "SUCCESS", 1);
 	    return true; // user won
-	} else {
-	    t.errorMessage("Aww... The enemy has sunk all your ships.", "FAIL", 1);
+	}
+	else
+	{
+	    t.errorMessage ("Aww... The enemy has sunk all your ships.", "FAIL", 1);
 	    return false;
 	}
     }
+
 
     /*
 	Private method to draw the "canvas" that the game will be hosted on
@@ -145,7 +161,7 @@ public class PlayGame {
 	For Loop 3:
 	    loop through all the rows of the user's board, to draw the user's ships
 	For Loop 4:
-	    loop through all the columns of the user's board, to draw the user's ships      
+	    loop through all the columns of the user's board, to draw the user's ships
     */
     private void drawBackground ()
     {
@@ -220,7 +236,8 @@ public class PlayGame {
 		x = (int) (user.SIZE * Math.random ());
 		y = (int) (user.SIZE * Math.random ());
 	    }
-	    if (!user.hit (x, y)) keepGoing = false;
+	    if (!user.hit (x, y))
+		keepGoing = false;
 	    t.sleep (2000); // delay so it's more realistic
 	}
     }
@@ -228,52 +245,62 @@ public class PlayGame {
 
     public void storeScore () throws IOException
     {
-	BufferedReader input;
-	PrintWriter output = new PrintWriter(new FileWriter("scores.txt"));
-	String name = t.inputMessage("give me name :D");
-	String line;
+	PrintWriter output = new PrintWriter (new FileWriter ("scores.txt"));
+	String name = t.inputMessage ("give me name :D");
 	int fileL = 0;
-	String[] names = new String[12];
-	int[] scores = new int[12];
+	String[] names = new String [12];
+	int[] scores = new int [12];
 	int buffer = 0;
 	String lbName;
 	int lbScore;
-	
+
 	// get length of file
-	input = new BufferedReader(new FileReader("scores.txt"));
-	while (true) {
-	    line = input.readLine(); // name
-	    if (line == null) break;
-	    line = input.readLine(); // score
-	    fileL += 1;
+	BufferedReader inp = new BufferedReader (new FileReader ("scores.txt"));
+	String line = "";
+	System.out.println (inp.readLine());
+	while (true)
+	{
+	    line = inp.readLine (); // name
+	    System.out.println (line);
+	    if (line == null)
+		break;
+	    line = inp.readLine (); // score
+	    fileL++;
+	    System.out.println ("read a line");
 	}
-	input.close();
+
+	inp.close ();
 	// insert score into what we have
-	input = new BufferedReader(new FileReader("scores.txt"));
-	for (int i = 0; i < fileL; i += 1) {
-	    lbName = input.readLine();
-	    lbScore = Integer.parseInt(input.readLine());
-	    if (buffer != 1 && score > lbScore) { // insert user's score
-		scores[i] = score;
-		names[i] = name;
+	BufferedReader input = new BufferedReader (new FileReader ("scores.txt"));
+	for (int i = 0 ; i < fileL ; i += 1)
+	{
+	    lbName = input.readLine ();
+	    lbScore = Integer.parseInt (input.readLine ());
+	    if (buffer != 1 && score > lbScore)
+	    { // insert user's score
+		scores [i] = score;
+		names [i] = name;
 		buffer += 1;
 	    }
-	    scores[i + buffer] = lbScore;
-	    names[i + buffer] = lbName;
-	    
+	    scores [i + buffer] = lbScore;
+	    names [i + buffer] = lbName;
+
 	}
-	if (buffer == 0) {
-	    scores[fileL] = score;
-	    names[fileL] = name;
-	    if (fileL != 10) buffer += 1;
+	if (buffer == 0)
+	{
+	    scores [fileL] = score;
+	    names [fileL] = name;
+	    if (fileL != 10)
+		buffer += 1;
 	}
-	
-	if (buffer == 1) t.errorMessage("Your score made it onto the leaderboard!", "CONGRAGULATIONS", 1);
-	for (int i = 0; i < Math.min(10, fileL + 1); i += 1) {
-	    output.println(names[i]);
-	    output.println(scores[i]);
+	if (buffer == 1)
+	    t.errorMessage ("Your score made it onto the leaderboard!", "CONGRAGULATIONS", 1);
+	for (int i = 0 ; i < Math.min (10, fileL + 1) ; i += 1)
+	{
+	    output.println (names [i]);
+	    output.println (scores [i]);
 	}
-	input.close();
-	output.close();        
+	input.close ();
+	output.close ();
     }
 }
