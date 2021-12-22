@@ -1,8 +1,11 @@
-test
+james
 1380
 test
-1380
+100
+test
+100
 joe
+<<<<<<< HEAD
 1380
 asdf
 1380
@@ -10,3 +13,18 @@ test
 1380
 asdasaa
 1350
+=======
+100
+joe
+100
+joe
+100
+joe
+100
+joe
+100
+joe
+100
+joe
+100
+>>>>>>> bddb4b7e3fa240450e070af0db451c83ea15f618
