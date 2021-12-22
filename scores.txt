@@ -1,6 +1,2 @@
-test
+tim
 1380
-james
-1000
-timmy
-2000
