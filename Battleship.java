@@ -92,7 +92,7 @@ public class Battleship
 	game.selectCheat ();
 	boolean userWin = game.play ();
 	//if (userWin && !game.cheat)
-	    game.storeScore ();
+	game.storeScore ();
 
 	// pause program/return to main menu
 	c.setColor (p.CONSOLE_GRAY);
@@ -138,14 +138,17 @@ public class Battleship
 	c.drawString ("Player Name", 100, 100);
 	c.drawString ("Score", 500, 100);
 	c.setFont (new Font ("Lucida Sans Typewriter Regular", Font.BOLD, 20));
-	
+
 	BufferedReader input = new BufferedReader (new FileReader ("scores.txt"));
 	for (int i = 0 ; i < 10 ; i++)
 	{
-	    String name = input.readLine();
-	    int score = Integer.parseInt(input.readLine());
-	    c.drawString (name, 100, 130 + (i * 25));
-	    c.drawString ("" + score, 500, 130 + (i * 25));
+	    String name = input.readLine ();
+	    if (name != null)
+	    {
+		int score = Integer.parseInt (input.readLine ());
+		c.drawString (name, 100, 130 + (i * 25));
+		c.drawString ("" + score, 500, 130 + (i * 25));
+	    }
 	}
 	c.drawString ("Press any key to exit.", 280, 400);
 	c.drawString ("Press space to clear scores.", 250, 425);
@@ -153,12 +156,12 @@ public class Battleship
 	if (button.equals (" "))
 	{
 	    String confirmation = t.inputMessage ("Are you sure? Enter \"ICS3UPisAw3some!\" to continue.");
-	    if (confirmation.equals ("ICS3UPisAw3some!"))
+	    if (confirmation != null && confirmation.equals ("ICS3UPisAw3some!"))
 	    {
 		try
 		{
 		    PrintWriter wipe = new PrintWriter (new FileWriter ("scores.txt"));
-		    for (int i = 0 ; i < 10 ; i++)
+		    for (int i = 0 ; i < 20 ; i++)
 		    {
 			wipe.println ("");
 		    }
@@ -169,7 +172,7 @@ public class Battleship
 	    }
 	    else
 	    {
-		t.errorMessage ("Wipe aborted.","Wipe aborted.",1);
+		t.errorMessage ("Wipe aborted.", "Wipe aborted.", 1);
 	    }
 	}
     }

@@ -247,6 +247,7 @@ public class PlayGame {
 	    line = input.readLine(); // score
 	    fileL += 1;
 	}
+	input.close();
 	// insert score into what we have
 	input = new BufferedReader(new FileReader("scores.txt"));
 	for (int i = 0; i < fileL; i += 1) {
