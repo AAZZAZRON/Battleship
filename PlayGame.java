@@ -55,7 +55,7 @@ public class PlayGame
 	finished = false;
 	turns = 1;
 	hits = 0;
-	score = 2500;
+	score = 1000;
     }
 
 
@@ -118,7 +118,7 @@ public class PlayGame
 	    }
 	    if (!enemy.hit ())
 	    {
-		score -= 25;
+		score -= 10;
 		enemy.remaining(turns, hits, score);
 		t.errorMessage ("Enemy's Turn!", "Enemy's Turn", 1);
 		enemyTurn ();
