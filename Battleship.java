@@ -55,6 +55,13 @@ public class Battleship
 
     public void runMenu ()
     {
+	// checks if any keys are in the buffer
+	// this method was found on http://www.staugustinechs.ca/cadawas/hsa/console.html
+	// if buffer contains a key, remove the key from the buffer
+	while (c.isCharAvail ())
+	{
+	    char key = c.getChar (); // grabs the key out of the buffer
+	}
 	c.clear ();
 	c.setColor (p.SKY_BLUE);
 	c.fillRect (0, 0, 800, 350);
@@ -197,7 +204,7 @@ public class Battleship
     public static void main (String[] args) throws IOException
     {
 	Battleship g = new Battleship ();
-	//g.runSplash();
+	g.runSplash();
 	while (g.action != 4)
 	{
 	    g.action = 0; // reset
