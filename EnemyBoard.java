@@ -30,10 +30,8 @@ public class EnemyBoard
     }
 
 
-    public boolean generateShips (int size)
+    public void generateShips (int size)
     {
-	if (size == 0)
-	    return true;
 	boolean done = false;
 	while (true)
 	{
@@ -95,7 +93,6 @@ public class EnemyBoard
 		}
 	    }
 	}
-	return generateShips (size - 1);
     }
 
 

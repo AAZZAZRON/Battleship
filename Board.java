@@ -71,8 +71,7 @@ public class Board
 	For Loop 6:
 	    if dir is 1 (vertical), and no ships are directly adjacent to it, place the ship onto the board (hasShip)
     */
-    public boolean generateShips(int size) {
-	if (size == 0) return true; // return if 0 otherwise infinite recursion
+    public void generateShips(int size) {
 	boolean done = false;
 	int x, y, dir;
 	while (true) {
@@ -113,7 +112,6 @@ public class Board
 		}
 	    }
 	}
-	return generateShips(size - 1);
     }
     
     /*

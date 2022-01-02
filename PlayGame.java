@@ -101,7 +101,16 @@ public class PlayGame
 	char key = '\u0000'; // local variable to score keypressed
 
 	user.generateShips (5); // generate user ships
+	user.generateShips (4);
+	user.generateShips (3);
+	user.generateShips (2);
+	user.generateShips (1);
+	
 	enemy.generateShips (5); // generate enemy ships
+	enemy.generateShips (4);
+	enemy.generateShips (3);
+	enemy.generateShips (2);
+	enemy.generateShips (1);
 
 	drawBackground (); // draw board
 	enemy.moveCursor ('q'); // draw the cursor at [0, 0]
