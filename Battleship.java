@@ -150,12 +150,19 @@ public class Battleship
 	BufferedReader input = new BufferedReader (new FileReader ("scores.txt"));
 	for (int i = 0 ; i < 10 ; i++)
 	{
-	    String name = input.readLine ();
-	    if (name != null)
+	    try
 	    {
-		int score = Integer.parseInt (input.readLine ());
-		c.drawString (name, 100, 130 + (i * 25));
-		c.drawString ("" + score, 500, 130 + (i * 25));
+		String name = input.readLine ();
+		if (name != null)
+		{
+		    int score = Integer.parseInt (input.readLine ());
+		    c.drawString (name, 100, 130 + (i * 25));
+		    c.drawString ("" + score, 500, 130 + (i * 25));
+		}
+	    }
+	    catch (Exception e)
+	    {
+		t.errorMessage ("Scores could not be loaded", "Error", 3);
 	    }
 	}
 	input.close ();
