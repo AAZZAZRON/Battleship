@@ -139,7 +139,7 @@ public class Battleship
 	c.setColor (p.SKY_BLUE);
 	c.fillRect (0, 0, 800, 350);
 	c.setColor (p.OCEAN_BLUE);
-	c.fillRect (0, 350, 800, 300);
+	c.fillRect (0, 400, 800, 300);
 	c.setFont (new Font ("Lucida Sans Typewriter Regular", Font.BOLD, 25));
 	c.setColor (Color.white);
 	c.drawString ("BATTLESHIP", 320, 50);
