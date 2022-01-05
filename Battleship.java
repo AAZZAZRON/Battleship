@@ -97,7 +97,8 @@ public class Battleship
 	c.clear ();
 	PlayGame game = new PlayGame (c, p, t);
 	game.selectCheat ();
-	if (game.finished) return; // don't run game if user exits
+	if (game.finished)
+	    return;                    // don't run game if user exits
 	boolean userWin = game.play ();
 	if (userWin && !game.cheat)
 	    game.storeScore ();
@@ -160,26 +161,22 @@ public class Battleship
 	input.close ();
 	c.drawString ("Press any key to exit.", 280, 400);
 	c.drawString ("Press space to clear scores.", 250, 425);
-	while (true) {
+	while (true)
+	{
 	    String button = String.valueOf (c.getChar ());
 	    if (button.equals (" "))
 	    {
-		String confirmation = t.inputMessage ("Are you sure? Enter \"ICS3UPisAw3some!\" to wipe the leaderboard.");
-		if (confirmation != null && confirmation.equals ("ICS3UPisAw3some!"))
-		{
-		    PrintWriter wipe = new PrintWriter (new FileWriter ("scores.txt"));
-		    wipe.println("");
-		    t.errorMessage("Wiped!", "Wiped.", 1);
-		    
-		    // wipe
-		    c.setColor (p.OCEAN_BLUE);
-		    c.fillRect(100, 130, 250, 250);
-		}
-		else
-		{
-		    t.errorMessage ("Wipe aborted.", "Wipe aborted.", 1);
-		}
-	    } else break;
+		PrintWriter wipe = new PrintWriter (new FileWriter ("scores.txt"));
+		wipe.println ("");
+		t.errorMessage ("Wiped!", "Wiped.", 1);
+
+		// wipe
+		c.setColor (p.OCEAN_BLUE);
+		c.fillRect (100, 130, 250, 250);
+		break;
+	    }
+	    else
+		break;
 	}
     }
 
@@ -204,7 +201,7 @@ public class Battleship
     public static void main (String[] args) throws IOException
     {
 	Battleship g = new Battleship ();
-	g.runSplash();
+	g.runSplash ();
 	while (g.action != 4)
 	{
 	    g.action = 0; // reset
