@@ -15,6 +15,7 @@ import javax.swing.*;
 public class Tools
 {
     private Console c;
+    static Palette p;
 
     /*
     The constructor of the Tools class
@@ -25,6 +26,7 @@ public class Tools
     public Tools (Console cC)
     {
 	c = cC;
+	p = new Palette();
     }
 
 
@@ -69,7 +71,16 @@ public class Tools
 
     public String inputMessage (String text)
     {
-	String output = JOptionPane.showInputDialog (text);
+	c.clear ();
+	c.setColor (p.SKY_BLUE);
+	c.fillRect (0, 0, 800, 350);
+	c.setColor (p.OCEAN_BLUE);
+	c.fillRect (0, 350, 800, 300);
+	c.setTextBackgroundColor(p.SKY_BLUE);
+	c.setCursor(10,40);
+	c.print(text);
+	String output = c.readLine();
+	c.setTextBackgroundColor(Color.black);
 	return output;
     }
 

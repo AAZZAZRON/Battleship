@@ -3,6 +3,9 @@
     Teacher: Ms. Krasteva
     Date: January 14th, 2022
     Description: One-player battleship game for ICS2U ISP
+
+    Variable Name              Type              Description
+    action                     int               This integer stores what key the user presses on the main menu.
 */
 import java.awt.*;
 import java.io.*;
@@ -16,7 +19,7 @@ public class Battleship
     int action = 0; // action (used in main menu)
 
 
-    public Battleship ()
+    public Battleship ()  // This public method is the constructor for the Battleship class, and intializes the console, palette, and tools.
     {
 	c = new Console (27, 100, "Battleship");
 	p = new Palette ();
@@ -24,7 +27,7 @@ public class Battleship
     }
 
 
-    public void runSplash ()
+    public void runSplash () // This public method runs the splashscreen by creating the classes required to run it, and joining them with the main thread.
     {
 	Splash_Ship g = new Splash_Ship (c);
 	g.start ();
@@ -53,7 +56,7 @@ public class Battleship
     }
 
 
-    public void runMenu ()
+    public void runMenu () // This public method runs the main menu of the game, where the inputs are recieved to navigate menus.
     {
 	// checks if any keys are in the buffer
 	// this method was found on http://www.staugustinechs.ca/cadawas/hsa/console.html
@@ -83,16 +86,16 @@ public class Battleship
 	{
 	    action = Integer.parseInt (input);
 	    if (action < 1 || action > 4)
-		throw new NumberFormatException ();
+		throw new IllegalArgumentException ();
 	}
-	catch (NumberFormatException e)
+	catch (Exception e)
 	{
 	    t.errorMessage ("Please press a valid button.", "Error", 2);
 	}
     }
 
 
-    public void startGame () throws IOException
+    public void startGame () throws IOException // This public method handles the playing of the game, by instancing the PlayGame class.
     {
 	c.clear ();
 	PlayGame game = new PlayGame (c, p, t);
@@ -111,7 +114,7 @@ public class Battleship
     }
 
 
-    public void instructions ()
+    public void instructions () // This public method draws the instructions screen.
     {
 	c.clear ();
 	c.setColor (p.SKY_BLUE);
@@ -133,11 +136,11 @@ public class Battleship
     }
 
 
-    public void leaderboard () throws IOException
+    public void leaderboard () throws IOException // This public method reads the scores.txt file and outputs it to the screen.
     {
 	c.clear ();
 	c.setColor (p.SKY_BLUE);
-	c.fillRect (0, 0, 800, 350);
+	c.fillRect (0, 0, 800, 400);
 	c.setColor (p.OCEAN_BLUE);
 	c.fillRect (0, 400, 800, 300);
 	c.setFont (new Font ("Lucida Sans Typewriter Regular", Font.BOLD, 25));
@@ -148,6 +151,12 @@ public class Battleship
 	c.setFont (new Font ("Lucida Sans Typewriter Regular", Font.BOLD, 20));
 
 	BufferedReader input = new BufferedReader (new FileReader ("scores.txt"));
+	
+	/*
+	This for loop runs 10 times to get the first 10 scores out of the file, and output it.
+	Variable Name              Type              Description
+	i                          int               Controls the for loop, to have it only run 10 times.
+	*/
 	for (int i = 0 ; i < 10 ; i++)
 	{
 	    try
@@ -162,15 +171,18 @@ public class Battleship
 	    }
 	    catch (Exception e)
 	    {
-		t.errorMessage ("Scores could not be loaded", "Error", 3);
+		t.errorMessage ("Scores could not be loaded, please check the file!", "Error", 3); // This only happens if the score file is incorrectly formatted
 	    }
 	}
 	input.close ();
-	c.drawString ("Press any key to exit.", 280, 400);
-	c.drawString ("Press space to clear scores.", 250, 425);
+	c.drawString ("Press any key to exit.", 280, 425);
+	c.drawString ("Press space to clear scores.", 250, 450);
+	String button = String.valueOf (c.getChar ());
+	/*
+	This while loop will run only when the user presses space to clear the file, and it essentially sets all of the lines in the file to ""
+	*/
 	while (true)
 	{
-	    String button = String.valueOf (c.getChar ());
 	    if (button.equals (" "))
 	    {
 		PrintWriter wipe = new PrintWriter (new FileWriter ("scores.txt"));
@@ -188,7 +200,7 @@ public class Battleship
     }
 
 
-    public void goodbye ()
+    public void goodbye () //This public method handles the goodbye screen.
     {
 	c.clear ();
 	c.setColor (p.SKY_BLUE);
@@ -205,22 +217,22 @@ public class Battleship
     }
 
 
-    public static void main (String[] args) throws IOException
+    public static void main (String[] args) throws IOException // The main method, where everything will be called.
     {
-	Battleship g = new Battleship ();
-	g.runSplash ();
-	while (g.action != 4)
+	Battleship g = new Battleship (); //Creates a new Battleship class
+	//g.runSplash (); // runs splashscreen
+	while (g.action != 4) // While user does not want to exit
 	{
-	    g.action = 0; // reset
-	    g.runMenu ();
-	    if (g.action == 1)
+	    g.action = 0; // set action to 0 by default
+	    g.runMenu (); //run the menu screen
+	    if (g.action == 1) //start the game
 		g.startGame ();
-	    else if (g.action == 2)
+	    else if (g.action == 2) //instructions
 		g.instructions ();
-	    else if (g.action == 3)
+	    else if (g.action == 3) //leaderboard
 		g.leaderboard ();
 	}
-	g.goodbye ();
+	g.goodbye (); //goodbye screen
     }
 }
 
