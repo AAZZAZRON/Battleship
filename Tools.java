@@ -1,12 +1,10 @@
 /*
-* James Huynh and Aaron Zhu
-* Ms. Krasteva
-* ISP ICS3UP
-* This class contains all of the tools we will be using in the other classes.
-* Dec 17, 2021
+    Programmers: Aaron Zhu and James Huynh
+    Teacher: Ms. Krasteva
+    Date: January 14th, 2022
+    Description: Tools.java
 
-Variable Name         Type         Description
-c                   Console        Same console as the one in Battleship.java, as it is passed through the constructor
+    Stores common functions that will be needed in other classes
 */
 
 import hsa.*;
@@ -14,8 +12,13 @@ import java.awt.*;
 import javax.swing.*;
 public class Tools
 {
+    /*
+	Variable Name       Type           Description
+	c                   Console        Same console as the one in Battleship.java, as it is passed through the constructor
+	p                   Palette        Sama palette as the one in Battleship.java, as it is passed through the constructor
+    */
     private Console c;
-    static Palette p;
+    private Palette p;
 
     /*
     The constructor of the Tools class
@@ -68,7 +71,6 @@ public class Tools
     text                  String       The text drawn on the popup
     output                String       The text the user inputs, is returned
     */
-
     public String inputMessage (String text)
     {
 	c.clear ();
