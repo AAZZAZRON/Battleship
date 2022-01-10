@@ -137,7 +137,7 @@ public class Battleship
     {
 	c.clear ();
 	c.setColor (p.SKY_BLUE);
-	c.fillRect (0, 0, 800, 350);
+	c.fillRect (0, 0, 800, 400);
 	c.setColor (p.OCEAN_BLUE);
 	c.fillRect (0, 400, 800, 300);
 	c.setFont (new Font ("Lucida Sans Typewriter Regular", Font.BOLD, 25));
@@ -162,12 +162,12 @@ public class Battleship
 	    }
 	    catch (Exception e)
 	    {
-		t.errorMessage ("Scores could not be loaded", "Error", 3);
+		t.errorMessage ("Scores could not be loaded, score file will be wiped.", "Error", 3);
 	    }
 	}
 	input.close ();
-	c.drawString ("Press any key to exit.", 280, 400);
-	c.drawString ("Press space to clear scores.", 250, 425);
+	c.drawString ("Press any key to exit.", 280, 425);
+	c.drawString ("Press space to clear scores.", 250, 450);
 	while (true)
 	{
 	    String button = String.valueOf (c.getChar ());
