@@ -2,7 +2,7 @@
     Programmers: Aaron Zhu and James Huynh
     Teacher: Ms. Krasteva
     Date: January 14th, 2022
-    Description: One-player battleship game for ICS2U ISP
+    Description: One-player battleship game for ICS3U ISP
 
     Variable Name              Type              Description
     action                     int               This integer stores what key the user presses on the main menu.
