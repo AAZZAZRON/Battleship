@@ -10,6 +10,8 @@ c                   Console        Same console as the one in Battleship.java, a
 x                     int          Controls the starting x value of the bomb
 delay                 int          Controls the delay before the bomb is drawn.
 speed                 int          Controls the speed of the animation of the bomb.
+p                    Palette       Holds the colours
+t                    Tools         Holds commonly used tools
 */
 
 import java.awt.*;

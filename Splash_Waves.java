@@ -7,6 +7,8 @@
 
 Variable Name         Type         Description
 c                   Console        Same console as the one in Battleship.java, as it is passed through the constructor
+p                    Palette       Holds the colours
+t                    Tools         Holds commonly used tools
 */
 
 import java.awt.*;
