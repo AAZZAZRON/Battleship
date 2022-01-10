@@ -83,7 +83,7 @@ public class PlayGame
 	c.drawString ("BATTLESHIP", 320, 50);
 	c.drawString ("Press \"Y\" if you want to enter cheat mode.", 150, 100);
 	c.drawString ("Press \"N\" if you do not want to enter cheat mode.", 120, 150);
-	c.drawString ("Press any \"E\" to return to main menu.", 220, 200);
+	c.drawString ("Press \"E\" to return to main menu.", 220, 200);
 	input = c.getChar();
 	while ("YyNnEe".indexOf(input) == -1) {
 	    t.errorMessage("Please enter a valid option.", "INVALID INPUT", 0);
