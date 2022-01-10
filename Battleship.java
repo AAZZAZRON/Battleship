@@ -26,8 +26,17 @@ public class Battleship
 	t = new Tools (c);
     }
 
-
-    public void runSplash () // This public method runs the splashscreen by creating the classes required to run it, and joining them with the main thread.
+    /*
+    This public method runs the splashscreen by creating the classes required to run it, and joining them with the main thread.
+    Variable Name              Type              Description
+    g                          Splash_Ship       This class draws the ship on the splash screen.
+    t1                         Splash_Waves      This class draws the waves on the splash screen.
+    a                          Splash_Bomb       This class draws the first bomb on the splash screen.
+    t2                         Thread            This class creates a new thread for the bomb.
+    b                          Splash_Bomb       This class draws the second bomb on the splash screen.
+    t3                         Thread            This class creates a new thread for the bomb.
+    */
+    public void runSplash ()
     {
 	Splash_Ship g = new Splash_Ship (c);
 	g.start ();
@@ -55,8 +64,13 @@ public class Battleship
 	}
     }
 
-
-    public void runMenu () // This public method runs the main menu of the game, where the inputs are recieved to navigate menus.
+    /*
+    This public method runs the main menu of the game, where the inputs are recieved to navigate menus.
+    Variable Name              Type              Description
+    key                        char              This variable is a throwaway variable to remove the keys from the buffer.
+    input                      String            This variable stores the user's input.
+    */
+    public void runMenu ()
     {
 	// checks if any keys are in the buffer
 	// this method was found on http://www.staugustinechs.ca/cadawas/hsa/console.html
@@ -94,8 +108,13 @@ public class Battleship
 	}
     }
 
-
-    public void startGame () throws IOException // This public method handles the playing of the game, by instancing the PlayGame class.
+    /*
+    This public method handles the playing of the game, by instancing the PlayGame class.
+    Variable Name              Type              Description
+    game                       PlayGame          This stores the instanced class that runs the game.
+    userWin                    boolean           This variable stores whether the user won or not.
+    */
+    public void startGame () throws IOException 
     {
 	c.clear ();
 	PlayGame game = new PlayGame (c, p, t);
@@ -135,8 +154,13 @@ public class Battleship
 	t.pauseProgram (230, 400, 25, "Press any key to return.", Color.white);
     }
 
-
-    public void leaderboard () throws IOException // This public method reads the scores.txt file and outputs it to the screen.
+    /*
+    This public method reads the scores.txt file and outputs it to the screen.
+    Variable Name              Type              Description
+    input                      BufferedReader    This class reads from the file
+    wipe                       PrintWriter       This class writes to the file.
+    */
+    public void leaderboard () throws IOException
     {
 	c.clear ();
 	c.setColor (p.SKY_BLUE);
@@ -156,6 +180,8 @@ public class Battleship
 	This for loop runs 10 times to get the first 10 scores out of the file, and output it.
 	Variable Name              Type              Description
 	i                          int               Controls the for loop, to have it only run 10 times.
+	name                       String            Takes the name from the file
+	score                      int               Takes the score correlating to the name from the file
 	*/
 	for (int i = 0 ; i < 10 ; i++)
 	{
@@ -168,6 +194,7 @@ public class Battleship
 		    c.drawString (name, 100, 130 + (i * 25));
 		    c.drawString ("" + score, 500, 130 + (i * 25));
 		}
+		
 	    }
 	    catch (Exception e)
 	    {
