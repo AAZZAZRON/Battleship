@@ -107,10 +107,10 @@ public class Battleship
 	    game.storeScore ();
 	// pause program/return to main menu
 	c.setColor (p.CONSOLE_GRAY);
-	c.fillRect (10, 200, 800, 140);
+	c.fillRect (10, 250, 800, 140);
 	c.setColor (p.BOARD_BACKGROUND);
-	c.fillRect (20, 210, 765, 120);
-	t.pauseProgram (120, 280, 30, "Press any key to return to main menu...", p.TEXT_GREEN);
+	c.fillRect (20, 260, 765, 120);
+	t.pauseProgram (120, 330, 30, "Press any key to return to main menu...", p.TEXT_GREEN);
     }
 
 
