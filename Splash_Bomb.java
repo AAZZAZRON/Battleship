@@ -26,6 +26,11 @@ public class Splash_Bomb implements Runnable
     /*
     This is the public constructor for this runnable, it accepts 3 parameters and sets the values to the parameters given.
     It also draws the background when called.
+    Variable Name         Type         Description
+    c                     Console      This is the inputted console.
+    x                     int          This is the inputted x value.
+    delay                 int          This is the inputted delay.
+    speed                 int          This is the inputted speed.
     */
     public Splash_Bomb (Console c, int x, int delay, int speed)
     {
