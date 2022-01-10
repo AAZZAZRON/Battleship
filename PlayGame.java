@@ -55,7 +55,7 @@ public class PlayGame
 	finished = false;
 	turns = 1;
 	hits = 0;
-	score = 1000;
+	score = 2500;
     }
 
     /*
@@ -168,7 +168,7 @@ public class PlayGame
 	    else
 	    {
 		hits += 1;
-		score += 25 + 2 * (int) (21 * Math.random() + 1); // 150 for every hit + RNG
+		score += 25 + 2 * (int) (21 * Math.random() + 1); // 25 for every hit + RNG
 	    }
 	    if (hits == 15 || user.remaining == 0)
 		finished = true;                                        // exit game is over
@@ -306,6 +306,8 @@ public class PlayGame
 	output              PrintWriter             used to write the new sorted leaderboard into the leaderboard file
 	
 	While Loop 1:
+	    makes sure the user's name doesn't exceed a certain length
+	While Loop 2:
 	    uesd to read how many lines are currently in the leaderboard file
 	For Loop 1:
 	    using the fileL which we calculated in the while loop,
@@ -316,6 +318,10 @@ public class PlayGame
     public void storeScore () throws IOException
     {
 	String name = t.inputMessage ("Leaderboard Name: ");
+	while (name.length() > 30) {
+	    t.errorMessage("Your name is too long! Please make it shorter.", "Name Too Long", 1);
+	    name = t.inputMessage("Leaderboard Name: ");
+	}
 	int fileL = 0;
 	String[] names = new String [12];
 	int[] scores = new int [12];
