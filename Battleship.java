@@ -34,6 +34,7 @@ public class Battleship
     }
 
     /*
+<<<<<<< HEAD
 	This public method runs the splash screen by initializing the classes 
 	required to run it, and joining them with the main thread
 	
@@ -44,6 +45,16 @@ public class Battleship
 	b                   Splash_Bomb     second instance of the class to draw a bomb on the console
 	t2                  Thread          creates a new thread for the first bomb
 	t3                  Thread          creates a new thread for the second bomb
+=======
+    This public method runs the splashscreen by creating the classes required to run it, and joining them with the main thread.
+    Variable Name              Type              Description
+    g                          Splash_Ship       This class draws the ship on the splash screen.
+    t1                         Splash_Waves      This class draws the waves on the splash screen.
+    a                          Splash_Bomb       This class draws the first bomb on the splash screen.
+    t2                         Thread            This class creates a new thread for the bomb.
+    b                          Splash_Bomb       This class draws the second bomb on the splash screen.
+    t3                         Thread            This class creates a new thread for the bomb.
+>>>>>>> dd487b0772798d2dd30f948dde5b4f077e588012
     */
     public void runSplash ()
     {
@@ -73,6 +84,7 @@ public class Battleship
 	}
     }
 
+<<<<<<< HEAD
 
     /*
 	This public method runs the main menu of the game, 
@@ -86,6 +98,15 @@ public class Battleship
 	    clears the buffer using c.isCharAvail()
     */
     public void runMenu () 
+=======
+    /*
+    This public method runs the main menu of the game, where the inputs are recieved to navigate menus.
+    Variable Name              Type              Description
+    key                        char              This variable is a throwaway variable to remove the keys from the buffer.
+    input                      String            This variable stores the user's input.
+    */
+    public void runMenu ()
+>>>>>>> dd487b0772798d2dd30f948dde5b4f077e588012
     {
 	// checks if any keys are in the buffer
 	// this method was found on http://www.staugustinechs.ca/cadawas/hsa/console.html
@@ -124,12 +145,19 @@ public class Battleship
     }
 
     /*
+<<<<<<< HEAD
 	This public method handles the playing of the game, 
 	by instancing the PlayGame class
 	
 	Variable Name       Type         Description
 	game                PlayGame     instance of the PlayGame class, to run the game
 	userWin             boolean      stores if the user won
+=======
+    This public method handles the playing of the game, by instancing the PlayGame class.
+    Variable Name              Type              Description
+    game                       PlayGame          This stores the instanced class that runs the game.
+    userWin                    boolean           This variable stores whether the user won or not.
+>>>>>>> dd487b0772798d2dd30f948dde5b4f077e588012
     */
     public void startGame () throws IOException 
     {
@@ -172,6 +200,7 @@ public class Battleship
     }
 
     /*
+<<<<<<< HEAD
 	This public method reads the scores.txt file 
 	and outputs it to the screen
 	
@@ -187,6 +216,14 @@ public class Battleship
 	    display the leaderboard            
     */
     public void leaderboard () throws IOException 
+=======
+    This public method reads the scores.txt file and outputs it to the screen.
+    Variable Name              Type              Description
+    input                      BufferedReader    This class reads from the file
+    wipe                       PrintWriter       This class writes to the file.
+    */
+    public void leaderboard () throws IOException
+>>>>>>> dd487b0772798d2dd30f948dde5b4f077e588012
     {
 	c.clear ();
 	c.setColor (p.SKY_BLUE);
@@ -201,7 +238,18 @@ public class Battleship
 	c.setFont (new Font ("Lucida Sans Typewriter Regular", Font.BOLD, 20));
 
 	BufferedReader input = new BufferedReader (new FileReader ("scores.txt"));
+<<<<<<< HEAD
 
+=======
+	
+	/*
+	This for loop runs 10 times to get the first 10 scores out of the file, and output it.
+	Variable Name              Type              Description
+	i                          int               Controls the for loop, to have it only run 10 times.
+	name                       String            Takes the name from the file
+	score                      int               Takes the score correlating to the name from the file
+	*/
+>>>>>>> dd487b0772798d2dd30f948dde5b4f077e588012
 	for (int i = 0 ; i < 10 ; i++)
 	{
 	    try
@@ -213,6 +261,7 @@ public class Battleship
 		    c.drawString (name, 100, 130 + (i * 25));
 		    c.drawString ("" + score, 500, 130 + (i * 25));
 		}
+		
 	    }
 	    catch (Exception e)
 	    {
