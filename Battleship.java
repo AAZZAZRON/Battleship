@@ -220,7 +220,7 @@ public class Battleship
     public static void main (String[] args) throws IOException // The main method, where everything will be called.
     {
 	Battleship g = new Battleship (); //Creates a new Battleship class
-	g.runSplash (); // runs splashscreen
+	//g.runSplash (); // runs splashscreen
 	while (g.action != 4) // While user does not want to exit
 	{
 	    g.action = 0; // set action to 0 by default
