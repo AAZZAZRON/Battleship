@@ -26,7 +26,7 @@ public class Splash_Ship extends Thread
     }
 
 
-    public void run ()
+    public void run () // This public method is run when the start() is called on the thread.
     {
 	c.setColor (p.SKY_BLUE);
 	c.fillRect (0, 0, 800, 350);
