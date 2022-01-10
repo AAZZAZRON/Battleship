@@ -16,7 +16,10 @@ public class Splash_Ship extends Thread
     Console c;           // The output console
     private Tools t = new Tools (c);
     private Palette p = new Palette ();
-
+    /*
+    Variable Name         Type         Description
+    c                     Console      This is the inputted console.
+    */
     public Splash_Ship (Console c)
     {
 	this.c = c;

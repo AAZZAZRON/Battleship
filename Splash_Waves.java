@@ -2,7 +2,7 @@
 * James Huynh and Aaron Zhu
 * Ms. Krasteva
 * ISP ICS3UP
-* This class contains
+* This class contains the method to draw the waves.
 * Dec 17, 2021
 
 Variable Name         Type         Description
@@ -17,7 +17,10 @@ public class Splash_Waves extends Thread
     private Console c;
     private Tools t = new Tools (c);
     private Palette p = new Palette ();
-
+    /*
+    Variable Name         Type         Description
+    cC                    Console      This is the inputted console.
+    */
     public Splash_Waves (Console cC)
     {
 	c = cC;
@@ -31,6 +34,7 @@ public class Splash_Waves extends Thread
     Variable Name         Type         Description
     i                     int          Controls the for loop and increments for each frame of animation.
     j                     int          Controls the for loop and increments for each arc.
+    shift                 int          Controls the shifting from left to right of the waves.
     */
     public void run ()
     {
