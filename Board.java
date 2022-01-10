@@ -55,6 +55,7 @@ public class Board
 	x                   int         stores the top left x coordinate we try to place the ship at
 	y                   int         stores the top left y coordinate we try to place the ship at
 	dir                 int         stores the direction we are trying to place the ship (horizontal or vertical)
+	i                   int         for loop iterator
 	
 	While Loop 1:
 	    keeps trying to generate a ship until the generation is successful
@@ -116,7 +117,7 @@ public class Board
     
     /*
 	Method to hit the user's board at coordinate [x, y]
-	Although public, method is called in sink() to generate "white tokens" around the sunk ship
+	Although public, method is called in sank() to generate "white tokens" around the sunk ship
 	
 	Variable Name       Type        Description
 	x                   int         stores the x coordinate we want to hit
@@ -149,7 +150,8 @@ public class Board
 	x                   int         variable used to search for the full length of the ship
 	y                   int         variable used to search for the full length of the ship
 	hitC                int         stores the number of spots on the ship that have not been hit        
-    
+	i                   int         for loop iterator
+	
 	While Loop 1:
 	    search downwards/rightwards for the bottommost coordinate of the ship
 	While Loop 2:

@@ -1,9 +1,29 @@
-// The "EnemyBoard" class.
+/*
+    Programmers: Aaron Zhu and James Huynh
+    Teacher: Ms. Krasteva
+    Date: January 14th, 2022
+    Description: EnemyBoard class (creates a board for the enemy)
+*/
+
 import java.awt.*;
 import hsa.Console;
 
 public class EnemyBoard
 {
+    /*
+	Variable Name        Type           Description
+	c                    Console        stores the console instance that was initialized in Battleship.java
+	p                    Palette        stores the palette instance that was initialized in Battleship.java
+	t                    Tools          stores the tools instance that was initialized in Battleship.java
+	visited              boolean[][]    stores if coordinate [x, y] has been hit
+	hasShip              int[][]        stores if coordinate [x, y] contains a ship
+					    stores the size of the ship at [x, y]
+	cheatsOn             boolean        stores if the board currently has cheats on
+	shipSunk             boolean[]      stores if ship size i has been sunk
+	cursorX              int            stores the user cursor's x coordinate
+	cursorY              int            stores the user cursor's y coordinate
+	SIZE                 final int      how big the board is
+    */
     private Console c;
     private Palette p;
     private Tools t;
@@ -14,7 +34,16 @@ public class EnemyBoard
     int cursorX;
     int cursorY;
     final int SIZE = 10;
-
+    
+    
+    /*
+	Constructor for the EnemyBoard class
+	
+	Variable Name      Type       Description
+	cC                 Console    console passed from Battleship.java
+	cP                 Palette    palette passed from Battleship.java
+	cT                 Tools      tools passed from Battleship.java
+    */
     public EnemyBoard (Console cC, Palette cP, Tools cT)
     {
 	c = cC;
@@ -29,7 +58,32 @@ public class EnemyBoard
 	cursorY = 0;
     }
 
-
+    /*
+	Public method that generates a ship of size `size` onto the user's board
+	
+	Variable Name       Type        Description
+	size                int         parameter indicating the size of the ship we want to place
+	done                boolean     determines if the ship has been placed
+	x                   int         stores the top left x coordinate we try to place the ship at
+	y                   int         stores the top left y coordinate we try to place the ship at
+	dir                 int         stores the direction we are trying to place the ship (horizontal or vertical)
+	i                   int         for loop iterator
+	
+	While Loop 1:
+	    keeps trying to generate a ship until the generation is successful
+	For Loop 1:
+	    if dir is 0 (horizontal), check that no ships have been placed directly left and right of the place we want to place this ship
+	For Loop 2:
+	    if dir is 0 (horizontal), check that no ships have been placed directly above, on, and below of the place we want to place
+	For Loop 3:
+	    if dir is 0 (horizontal), and no ships are directly adjacent to it, place the ship onto the board (hasShip)
+	For Loop 4:
+	    if dir is 1 (vertical), check that no ships have been placed directly above and below of the place we want to place this ship
+	For Loop 5:
+	    if dir is 1 (vertical), check that no ships have been placed directly left, on, and right of the place we want to place
+	For Loop 6:
+	    if dir is 1 (vertical), and no ships are directly adjacent to it, place the ship onto the board (hasShip)
+    */
     public void generateShips (int size)
     {
 	boolean done = false;
@@ -96,6 +150,13 @@ public class EnemyBoard
     }
 
 
+    /*
+	Method to hit the user's board at coordinate [cursorX, cursorY]
+	Although public, method is called in sank() to generate "white tokens" around the sunk ship
+	
+	Draws a "token" at x, y (either red or white depending on hit or miss)
+	Returns if the coordinate we hit contained a ship
+    */
     public boolean hit ()
     {
 	visited [cursorX] [cursorY] = true; // visited
@@ -109,7 +170,14 @@ public class EnemyBoard
 	return hasShip [cursorX] [cursorY] != 0;
     }
 
-
+    /*
+	Overloaded method to hit the user's board at coordinate [x, y]
+	used to simulate "hits" to the squares directly adjacent to a sunk ship
+	
+	Variable Name       Type        Description
+	x                   int         stores the x coordinate we want to hit
+	y                   int         stores the y coordinate we want to hit
+    */
     public void hit (int x, int y)
     { // overloaded method to hit adjacent squares when ship sinks
 	visited [x] [y] = true; // visited
@@ -117,7 +185,18 @@ public class EnemyBoard
 	c.fillOval (311 + 47 * x, 51 + 47 * y, 25, 25); // draw "hit"
     }
 
-
+    /*
+	Public method to move the user's cursor in the direction `dir`
+	
+	Variable Name       Type        Description
+	dir                 char        stores the direction the user wants to move
+					q -> stay still
+					w or W -> move up
+					a or A -> move left
+					s or S -> move down
+					d or D -> move right
+					when the cursor goes offscreen, it wraps to the other side
+    */
     public void moveCursor (char dir)
     {
 	if (dir != 'q')
@@ -168,12 +247,38 @@ public class EnemyBoard
     }
 
 
+    /*
+	Public method to toggle cheatsOn
+	when cheats are on, the user can see where the enemy's ships are
+	cheats automatically toggle off when the user moves their cursor
+	
+	Variable Name          Type           Description
+	checked                boolean[]      stores if ship size i has already been drawn
+	BX                     final int      stores the topleft x coordinate of the enemy's board
+	XY                     final int      stores the topleft y coordinate of the enemy's board
+	GRID_SIZE              final int      stores the size of each grid square in pixels
+	val                    int            stores hasShip[i][j], during grid traversal
+	i                      int            for loop iterator
+	j                      int            for loop iterator
+	
+	For Loop 1:
+	    traverse the grid's x coordinates to toggle cheats on
+	For Loop 2:
+	    traverse the grid's y coordinates
+	    for each iteration, check if coordinate [i, j] has a ship, and if so, if the ship has already been shown
+	    if the ship has not been shown, show the ship on the board
+	For Loop 3:
+	    traverse the grid's x coordiantes to toggle cheats off
+	For Loop 4:
+	    traverse the grid's y coordinates
+	    for each iteration, clear the coordinate if there was a ship displayed
+    */
     public void toggleCheat ()
     {
 	boolean[] checked = new boolean [6]; // if ship size i has been drawn yet
-	int bX = 300;
-	int bY = 40;
-	int gridSize = 47;
+	final int BX = 300;
+	final int BY = 40;
+	final int GRID_SIZE = 47;
 	int val;
 	if (!cheatsOn)
 	{
@@ -187,9 +292,9 @@ public class EnemyBoard
 			c.setColor (p.SHIP_GRAY);
 			checked [val] = true; // mark that it has been drawn
 			if (i + 1 != SIZE && hasShip [i + 1] [j] == val)
-			    c.fillOval (bX + gridSize * i, bY + gridSize * j, gridSize * val, gridSize);
+			    c.fillOval (BX + GRID_SIZE * i, BY + GRID_SIZE * j, GRID_SIZE * val, GRID_SIZE);
 			else
-			    c.fillOval (bX + gridSize * i, bY + gridSize * j, gridSize, gridSize * val);
+			    c.fillOval (BX + GRID_SIZE * i, BY + GRID_SIZE * j, GRID_SIZE, GRID_SIZE * val);
 		    }
 		    // draw hits on top of ship
 		    if (hasShip [i] [j] != 0 && visited [i] [j])
@@ -227,7 +332,35 @@ public class EnemyBoard
 	moveCursor ('q');
     }
 
-
+    /*
+	Private method to check if the boat containing cell [cursorX, cursorY] has been sunk (i.e. all spots have been hit)
+	Called in hit()
+	
+	Variable Name       Type        Description
+	bX                  int         stores the largest x coordinate that the ship is in
+	bY                  int         stores the largest y coordinate that the ship is in
+	x                   int         variable used to search for the full length of the ship
+	y                   int         variable used to search for the full length of the ship
+	hitC                int         stores the number of spots on the ship that have not been hit        
+	i                   int         for loop iterator
+	
+	While Loop 1:
+	    search downwards/rightwards for the bottommost coordinate of the ship
+	While Loop 2:
+	    search upwards/leftwards for the uppermost coordinate of the ship
+	For Loop 3:
+	    if the ship was sunk and is positioned vertically,
+	    mark adjacent left and right coordinates as visited
+	For Loop 4:
+	    if the ship was sunk and is positioned vertically,
+	    mark adjacent upper and lower coordinates as visited
+	For Loop 5:
+	    if the ship was sunk and is positioned horizontally,
+	    mark the adjacent upper and lower coordinates as visited
+	For Loop 6:
+	    if the ship was sunk and is positioned horizontally,
+	    mark the adjacent left and right coordinates as visited
+    */
     private void sank ()
     {
 	int bX, bY;
@@ -315,6 +448,18 @@ public class EnemyBoard
     }
 
 
+    /*
+	Public method to draw the user's stats onto the console
+	
+	Variable Name        Type       Description
+	nTurn                int        parameter that stores how many turns have gone by
+	nHit                 int        parameter that stores how many hits the user has made
+	nScore               int        parameter that stores the user's current score
+	i                    int        for loop iterator
+	
+	For Loop 1:
+	    display the status of each ship from size 1 to size 5
+    */
     public void remaining (int nTurn, int nHit, int nScore)
     {
 	c.setColor (p.BOARD_BACKGROUND); // reset board console
