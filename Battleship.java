@@ -33,6 +33,7 @@ public class Battleship
 	t = new Tools (c);
     }
 
+<<<<<<< HEAD
     /*
 <<<<<<< HEAD
 	This public method runs the splash screen by initializing the classes 
@@ -57,6 +58,10 @@ public class Battleship
 >>>>>>> dd487b0772798d2dd30f948dde5b4f077e588012
     */
     public void runSplash ()
+=======
+
+    public void runSplash () // This public method runs the splashscreen by creating the classes required to run it, and joining them with the main thread.
+>>>>>>> a0f8926d2be4023c7aa75a4ce6d0f4dde405a248
     {
 	Splash_Ship g = new Splash_Ship (c);
 	g.start ();
@@ -85,6 +90,7 @@ public class Battleship
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     /*
 	This public method runs the main menu of the game, 
@@ -107,6 +113,10 @@ public class Battleship
     */
     public void runMenu ()
 >>>>>>> dd487b0772798d2dd30f948dde5b4f077e588012
+=======
+
+    public void runMenu () // This public method runs the main menu of the game, where the inputs are recieved to navigate menus.
+>>>>>>> a0f8926d2be4023c7aa75a4ce6d0f4dde405a248
     {
 	// checks if any keys are in the buffer
 	// this method was found on http://www.staugustinechs.ca/cadawas/hsa/console.html
@@ -144,6 +154,7 @@ public class Battleship
 	}
     }
 
+<<<<<<< HEAD
     /*
 <<<<<<< HEAD
 	This public method handles the playing of the game, 
@@ -160,6 +171,10 @@ public class Battleship
 >>>>>>> dd487b0772798d2dd30f948dde5b4f077e588012
     */
     public void startGame () throws IOException 
+=======
+
+    public void startGame () throws IOException // This public method handles the playing of the game, by instancing the PlayGame class.
+>>>>>>> a0f8926d2be4023c7aa75a4ce6d0f4dde405a248
     {
 	c.clear ();
 	PlayGame game = new PlayGame (c, p, t);
@@ -199,6 +214,7 @@ public class Battleship
 	t.pauseProgram (230, 400, 25, "Press any key to return.", Color.white);
     }
 
+<<<<<<< HEAD
     /*
 <<<<<<< HEAD
 	This public method reads the scores.txt file 
@@ -224,6 +240,10 @@ public class Battleship
     */
     public void leaderboard () throws IOException
 >>>>>>> dd487b0772798d2dd30f948dde5b4f077e588012
+=======
+
+    public void leaderboard () throws IOException // This public method reads the scores.txt file and outputs it to the screen.
+>>>>>>> a0f8926d2be4023c7aa75a4ce6d0f4dde405a248
     {
 	c.clear ();
 	c.setColor (p.SKY_BLUE);
@@ -246,8 +266,6 @@ public class Battleship
 	This for loop runs 10 times to get the first 10 scores out of the file, and output it.
 	Variable Name              Type              Description
 	i                          int               Controls the for loop, to have it only run 10 times.
-	name                       String            Takes the name from the file
-	score                      int               Takes the score correlating to the name from the file
 	*/
 >>>>>>> dd487b0772798d2dd30f948dde5b4f077e588012
 	for (int i = 0 ; i < 10 ; i++)
@@ -261,7 +279,6 @@ public class Battleship
 		    c.drawString (name, 100, 130 + (i * 25));
 		    c.drawString ("" + score, 500, 130 + (i * 25));
 		}
-		
 	    }
 	    catch (Exception e)
 	    {
