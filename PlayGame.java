@@ -58,7 +58,19 @@ public class PlayGame
 	score = 1000;
     }
 
-
+    /*
+	Public method to select cheat mode prior to playing the game
+	
+	Variable Name        Type       Description
+	input                char       gets the char that the user clicks
+					y or Y -> cheat mode on
+					n or N -> cheat mode off
+					e or E -> return to main menu
+	
+	While Loop 1:
+	    Error traps the user-input. Program only moves on when the input is:
+	    y, Y, n, N, e, or E
+    */
     public void selectCheat ()
     {
 	char input;
@@ -276,22 +288,47 @@ public class PlayGame
 	}
     }
 
-
+    
+    /*
+	Public method to score the user's score after the game ends
+	
+	Variable Name       Type                    Description
+	name                String                  stores the user's name
+	fileL               int                     stores how many scores are currently in the leaderboard
+	names               String array size 12    stores the names of the leaderboard scores in order
+	scores              int array size 12       stores the scores of the leaderboard in order
+	buffer              int                     used to add the user's current score to the existing scores of the leaderboard
+	lbName              String                  temporary name when parsing the leaderboard file
+	lbScore             int                     temporary score when parsing leaderboard file
+	line                String                  temporary line when parsing the leaderboard file
+	inp                 BufferedReader          used to read the leaderboard file for the length of the file
+	input               BufferedReader          used to read the leaderboard file for the user's name/score
+	output              PrintWriter             used to write the new sorted leaderboard into the leaderboard file
+	
+	While Loop 1:
+	    uesd to read how many lines are currently in the leaderboard file
+	For Loop 1:
+	    using the fileL which we calculated in the while loop,
+	    loop through the file and store the user/score of each line
+	For Loop 2:
+	    writes the new leaderboard to the file
+    */
     public void storeScore () throws IOException
     {
-	String name = t.inputMessage ("give me name :D");
+	String name = t.inputMessage ("Leaderboard Name: ");
 	int fileL = 0;
 	String[] names = new String [12];
 	int[] scores = new int [12];
 	int buffer = 0;
 	String lbName;
 	int lbScore;
+	String line;
 
 	// get length of file
 	BufferedReader inp = new BufferedReader (new FileReader ("scores.txt"));
 	while (true)
 	{
-	    String line = inp.readLine (); // name
+	    line = inp.readLine (); // name
 	    if (line != null)
 	    {
 		line = inp.readLine (); // score
