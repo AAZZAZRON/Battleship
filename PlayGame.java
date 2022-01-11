@@ -271,13 +271,22 @@ public class PlayGame
     private void enemyTurn ()
     {
 	t.sleep(1000);
+	int rng;
+	boolean shouldHit;
+
 	int x = (int) (user.SIZE * Math.random ());
 	int y = (int) (user.SIZE * Math.random ());
 	boolean keepGoing = true;
 	while (keepGoing && user.remaining != 0)
 	{
-	    while (user.visited [x] [y])
-	    { // while the position has been visited, pick another position
+	    rng = (int) (100 * Math.random() + 1); // percentage from 1-100
+	    if (rng < 20) shouldHit = true;
+	    else shouldHit = false;
+	    
+	    // while the rng square has already been hit
+	    // or if (guaranteed to hit and the current square has no ship)
+	    while (user.visited [x] [y] || (shouldHit && user.hasShip[x][y] == 0))
+	    { // generate another square
 		x = (int) (user.SIZE * Math.random ());
 		y = (int) (user.SIZE * Math.random ());
 	    }
