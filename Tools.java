@@ -73,16 +73,17 @@ public class Tools
     */
     public String inputMessage (String text)
     {
-	c.clear ();
-	c.setColor (p.SKY_BLUE);
-	c.fillRect (0, 0, 800, 350);
-	c.setColor (p.OCEAN_BLUE);
-	c.fillRect (0, 350, 800, 300);
-	c.setTextBackgroundColor(p.SKY_BLUE);
-	c.setCursor(10,40);
+	c.setColor (p.CONSOLE_GRAY);
+	c.fillRect (10, 200, 800, 140);
+	c.setColor (p.BOARD_BACKGROUND);
+	c.fillRect (20, 210, 765, 120);
+	c.setCursor(14,5);
+	c.setTextBackgroundColor(p.BOARD_BACKGROUND);
+	c.setTextColor(Color.green);
 	c.print(text);
 	String output = c.readLine();
-	c.setTextBackgroundColor(Color.black);
+	c.setTextBackgroundColor(Color.white);
+	c.setTextColor(Color.black);
 	return output;
     }
 
