@@ -157,7 +157,7 @@ public class PlayGame
 	    }
 	    if (!enemy.hit ())
 	    {
-		score -= 10;
+		score -= 25;
 		enemy.remaining(turns, hits, score);
 		t.errorMessage ("Enemy's Turn!", "Enemy's Turn", 1);
 		enemyTurn ();
@@ -168,7 +168,7 @@ public class PlayGame
 	    else
 	    {
 		hits += 1;
-		score += 25 + 2 * (int) (21 * Math.random() + 1); // 25 for every hit + RNG
+		score += 25 + 2 * (int) (25 * Math.random() + 1); // 25 for every hit + RNG
 	    }
 	    if (hits == 15 || user.remaining == 0)
 		finished = true;                                        // exit game is over
@@ -267,7 +267,28 @@ public class PlayGame
 	}
     }
 
-
+    /*
+	Private method to simulate the enemey's turn
+	Called in play()
+	
+	Variable Name       Type        Description
+	rng                 int         randomly generates a number from 1-100
+	shouldHit           boolean     stores if the enemy should hit on their current turn
+	x                   int         stores the x coordinate that the enemy is trying to hit
+	y                   int         stores the y coordinate that the enemy is trying to hit
+	keepGoing           boolean     toggles on and off depending on if the enemy hit the previous turn
+					the game rules state that one should keep hitting until they miss
+	
+	While Loop 1:
+	    keeps running the enemy's turn until they miss
+	While Loop 2:
+	    keeps finding a coordinate [x, y] until the coordinate is valid to hit
+	
+	Note:
+	    this method uses some sudo RNG
+	    makes the computer perform better in the game,
+	    thereby making the overall experience more tense
+    */
     private void enemyTurn ()
     {
 	t.sleep(1000);
