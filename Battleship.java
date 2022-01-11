@@ -168,7 +168,8 @@ public class Battleship
 	c.drawString ("The first to sink all enemy ships will win. There are 5 boats, each 1 wide", 70, 175);
 	c.drawString ("and between 1 and 5 long. When you get a hit, you will be able to fire again.", 70, 200);
 	c.drawString ("When you sink a ship, it will reveal all squares surrounding it, as there", 70, 225);
-	c.drawString ("will be no ships next to another ship.", 70, 250);
+	c.drawString ("will be no ships next to another ship. Score starts at 2500, and you lose", 70, 250);
+	c.drawString ("25 points for every miss, and you gain 25 points plus a bonus for every hit.", 70, 275);
 	t.pauseProgram (230, 400, 25, "Press any key to return.", Color.white);
     }
 
