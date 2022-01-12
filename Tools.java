@@ -22,20 +22,20 @@ public class Tools
 
     /*
     The constructor of the Tools class
-    
+
     Variable Name         Type         Description
     cC                  Console        cC stands for constructor console, it is the console passed through from Battleship.java
     */
     public Tools (Console cC)
     {
 	c = cC;
-	p = new Palette();
+	p = new Palette ();
     }
 
 
     /*
     This method pauses the program and will continue when the user presses any button.
-    
+
     Variable Name         Type         Description
     x                     int          The x value to draw the string at.
     y                     int          The y value to draw the string at.
@@ -53,44 +53,54 @@ public class Tools
 
     /*
     This method will pause the program for the specified amount of milliseconds
-    
+
     Variable Name         Type         Description
     ms                    int          The milliseconds to sleep for.
     */
-    public void sleep (int ms) 
+    public void sleep (int ms)
     {
-	try {
+	try
+	{
 	    Thread.sleep (ms);
-	} catch (Exception e) {}
+	}
+	catch (Exception e)
+	{
+	}
     }
+
 
     /*
     This method will pause the program for the specified amount of milliseconds
-    
+
     Variable Name         Type         Description
     text                  String       The text drawn on the popup
     output                String       The text the user inputs, is returned
     */
     public String inputMessage (String text)
     {
-	c.setColor (p.CONSOLE_GRAY);
-	c.fillRect (10, 200, 800, 140);
-	c.setColor (p.BOARD_BACKGROUND);
-	c.fillRect (20, 210, 765, 120);
-	c.setCursor(14,5);
-	c.setTextBackgroundColor(p.BOARD_BACKGROUND);
-	c.setTextColor(Color.green);
-	c.print(text);
-	String output = c.readLine();
-	c.setTextBackgroundColor(Color.white);
-	c.setTextColor(Color.black);
+
+	String output = "";
+	while (output.equals (""))
+	{
+	    c.setColor (p.CONSOLE_GRAY);
+	    c.fillRect (10, 200, 800, 140);
+	    c.setColor (p.BOARD_BACKGROUND);
+	    c.fillRect (20, 210, 765, 120);
+	    c.setCursor (14, 5);
+	    c.setTextBackgroundColor (p.BOARD_BACKGROUND);
+	    c.setTextColor (Color.green);
+	    c.print (text);
+	    output = c.readLine ().trim ();
+	}
+	c.setTextBackgroundColor (Color.white);
+	c.setTextColor (Color.black);
 	return output;
     }
 
 
     /*
     This method will create an error popup.
-    
+
     Variable Name         Type         Description
     title                 String       The title of the message
     message               String       The text on the popup
@@ -100,7 +110,8 @@ public class Tools
 				       2 - warning
 				       3 - help/question
     */
-    public void errorMessage(String message, String title, int label){
-	JOptionPane.showMessageDialog(new JFrame(), message, title, label);
+    public void errorMessage (String message, String title, int label)
+    {
+	JOptionPane.showMessageDialog (new JFrame (), message, title, label);
     }
 }
