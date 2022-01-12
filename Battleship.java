@@ -272,7 +272,6 @@ public class Battleship
     {
 	Battleship g = new Battleship (); //Creates a new Battleship class
 	// g.runSplash (); // runs splashscreen
-	t.inputMessage("test");
 	while (g.action != 4) // While user does not want to exit
 	{
 	    g.action = 0; // set action to 0 by default
