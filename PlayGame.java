@@ -348,7 +348,7 @@ public class PlayGame
     public void storeScore () throws IOException
     {
 	String name = t.inputMessage ("Leaderboard Name: ");
-	while (name.length() > 30) {
+	while (name.length() > 20) {
 	    t.errorMessage("Your name is too long! Please make it shorter.", "Name Too Long", 1);
 	    name = t.inputMessage("Leaderboard Name: ");
 	}
