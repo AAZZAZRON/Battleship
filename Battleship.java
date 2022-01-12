@@ -3,6 +3,17 @@
     Teacher: Ms. Krasteva
     Date: January 14th, 2022
     Description: One-player battleship game for ICS3U ISP
+    
+    Be the first to sink all of the enemy's ships! Each time the user plays the game,
+    a randomly generated board will be curated for the user and the enemy.
+    For this version of battleship, the enemy is a computer AI. 
+    Strategically hit coordinates of your board, and sink the ships. Ship sizes range from
+    1x1 to 5x1, adding an aspect of luck to the game.
+    
+    Our specific implementation of Battleship also includes a "cheat mode". This enables the user to see
+    where the enemy's ships are. However, when in cheat mode, user's scores will not be added to the leaderboard.
+    
+    Have fun!
 */
 import java.awt.*;
 import java.io.*;
