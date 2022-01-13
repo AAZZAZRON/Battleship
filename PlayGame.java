@@ -82,8 +82,13 @@ public class PlayGame
 	c.setColor (Color.white);
 	c.drawString ("BATTLESHIP", 320, 50);
 	c.drawString ("Press \"Y\" if you want to enter cheat mode.", 150, 100);
-	c.drawString ("Press \"N\" if you do not want to enter cheat mode.", 120, 150);
-	c.drawString ("Press \"E\" to return to main menu.", 220, 200);
+	c.drawString ("Press \"N\" if you do not want to enter cheat mode.", 110, 200);
+	c.drawString ("Press \"E\" to return to main menu.", 200, 250);
+	
+	c.setFont (new Font ("Lucida Sans Typewriter Regular", Font.BOLD, 17));
+	c.drawString ("Cheat mode lets you to see where the opponent's ships are placed.", 130, 125);
+	c.drawString ("Note that scores received in cheat mode will not be added to the leaderboard.", 90, 150);
+	
 	input = c.getChar();
 	while ("YyNnEe".indexOf(input) == -1) {
 	    t.errorMessage("Please enter a valid option.", "INVALID INPUT", 0);
@@ -301,7 +306,7 @@ public class PlayGame
 	while (keepGoing && user.remaining != 0)
 	{
 	    rng = (int) (100 * Math.random() + 1); // percentage from 1-100
-	    if (rng < 5) shouldHit = true;
+	    if (rng < 10) shouldHit = true;
 	    else shouldHit = false;
 	    
 	    // while the rng square has already been hit
@@ -348,8 +353,9 @@ public class PlayGame
     public void storeScore () throws IOException
     {
 	String name = t.inputMessage ("Leaderboard Name: ");
-	while (name.length() > 20) {
-	    t.errorMessage("Your name is too long! Please make it shorter.", "Name Too Long", 1);
+	while (name.length() > 25 || name.length() == 0) {
+	    if (name.length() != 0) t.errorMessage("Your name is too long! Please make it shorter.", "Name Too Long", 1);
+	    else t.errorMessage("Your name cannot be nothing! Please try again.", "Naming Error", 1);
 	    name = t.inputMessage("Leaderboard Name: ");
 	}
 	int fileL = 0;
