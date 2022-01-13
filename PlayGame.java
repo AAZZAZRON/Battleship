@@ -306,7 +306,7 @@ public class PlayGame
 	while (keepGoing && user.remaining != 0)
 	{
 	    rng = (int) (100 * Math.random() + 1); // percentage from 1-100
-	    if (rng < 10) shouldHit = true;
+	    if (rng < 8) shouldHit = true;
 	    else shouldHit = false;
 	    
 	    // while the rng square has already been hit

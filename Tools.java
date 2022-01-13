@@ -80,18 +80,16 @@ public class Tools
     {
 
 	String output = "";
-	while (output.equals (""))
-	{
-	    c.setColor (p.CONSOLE_GRAY);
-	    c.fillRect (10, 200, 800, 140);
-	    c.setColor (p.BOARD_BACKGROUND);
-	    c.fillRect (20, 210, 765, 120);
-	    c.setCursor (14, 5);
-	    c.setTextBackgroundColor (p.BOARD_BACKGROUND);
-	    c.setTextColor (Color.green);
-	    c.print (text);
-	    output = c.readLine ().trim ();
-	}
+	c.setColor (p.CONSOLE_GRAY);
+	c.fillRect (10, 200, 800, 140);
+	c.setColor (p.BOARD_BACKGROUND);
+	c.fillRect (20, 210, 765, 120);
+	c.setCursor (14, 5);
+	c.setTextBackgroundColor (p.BOARD_BACKGROUND);
+	c.setTextColor (Color.green);
+	c.print (text);
+	output = c.readLine ().trim ();
+	
 	c.setTextBackgroundColor (Color.white);
 	c.setTextColor (Color.black);
 	return output;
