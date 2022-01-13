@@ -27,8 +27,13 @@ public class Splash_Ship extends Thread
 	this.c = c;
     }
 
-
-    public void run () // This public method is run when the start() is called on the thread.
+    /*
+    This public method is run when the start() is called on the thread.
+    Variable Name         Type         Description
+    x                     int[]        This is the array that stores the x values for the points to draw the polygon.
+    y                     int[]        This is the array that stores the y values for the points to draw the polygon.
+    */
+    public void run ()
     {
 	c.setColor (p.SKY_BLUE);
 	c.fillRect (0, 0, 800, 350);
