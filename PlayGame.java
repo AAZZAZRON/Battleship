@@ -354,8 +354,8 @@ public class PlayGame
     {
 	String name = t.inputMessage ("Leaderboard Name: ");
 	while (name.length() > 25 || name.length() == 0) {
-	    if (name.length() != 0) t.errorMessage("Your name is too long! Please make it shorter.", "Name Too Long", 1);
-	    else t.errorMessage("Your name cannot be nothing! Please try again.", "Naming Error", 1);
+	    if (name.length() != 0) t.errorMessage("Your name is too long! Please make it shorter.", "Name Too Long", 0);
+	    else t.errorMessage("Your name cannot be nothing! Please try again.", "Naming Error", 0);
 	    name = t.inputMessage("Leaderboard Name: ");
 	}
 	int fileL = 0;
