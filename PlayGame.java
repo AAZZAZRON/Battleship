@@ -407,7 +407,7 @@ public class PlayGame
 		buffer += 1;
 	}
 	if (buffer == 1)
-	    t.errorMessage ("Your score made it onto the leaderboard!", "CONGRAGULATIONS", 1);
+	    t.errorMessage ("Your score made it onto the leaderboard!", "CONGRATULATIONS", 1);
 	input.close ();
 	PrintWriter output = new PrintWriter (new FileWriter ("scores.txt"));
 	for (int i = 0 ; i < Math.min (10, fileL + 1) ; i += 1)
