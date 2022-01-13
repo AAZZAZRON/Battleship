@@ -260,6 +260,7 @@ public class Battleship
 	c.drawString ("BATTLESHIP", 320, 50);
 	c.drawString ("Thank you for playing!", 270, 150);
 	c.drawString ("Made by Aaron Z and James H", 220, 180);
+	c.drawString ("This program was made for ICS3UP ISP.", 150, 210);
 	t.pauseProgram (280, 400, 25, "Press any key to exit.", Color.white);
 	c.close ();
     }
