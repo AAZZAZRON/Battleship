@@ -173,14 +173,17 @@ public class Battleship
 	c.setColor (Color.white);
 	c.drawString ("BATTLESHIP", 320, 50);
 	c.setFont (new Font ("Lucida Sans Typewriter Regular", Font.BOLD, 20));
-	c.drawString ("When the game starts, you will select a square to fire at, if you hit", 70, 100);
-	c.drawString ("an enemy ship, the game will alert you. If you do not, then it will go", 70, 125);
-	c.drawString ("to the enemy's turn, where they will fire at your board in the top left.", 70, 150);
-	c.drawString ("The first to sink all enemy ships will win. There are 5 boats, each 1 wide", 70, 175);
-	c.drawString ("and between 1 and 5 long. When you get a hit, you will be able to fire again.", 70, 200);
-	c.drawString ("When you sink a ship, it will reveal all squares surrounding it, as there", 70, 225);
-	c.drawString ("will be no ships next to another ship. Score starts at 2500, and you lose", 70, 250);
-	c.drawString ("25 points for every miss, and you gain 25 points plus a bonus for every hit.", 70, 275);
+	c.drawString ("When the game starts, you will select a square to fire at. If you hit", 50, 100);
+	c.drawString ("an enemy ship, the game will alert you. If you do not, then it will go", 50, 125);
+	c.drawString ("to the enemy's turn, where they will fire at your board (in the top left).", 50, 150);
+	c.drawString ("The first to sink all opponent ships will win. There are 5 boats, each 1 wide", 50, 175);
+	c.drawString ("and between 1 and 5 long. If you hit a ship, you will be able to fire again.", 50, 200);
+	c.drawString ("Sinking a ship will reveal all squares surrounding it, as there will", 50, 225);
+	c.drawString ("be no ships next to another ship. A round's score is calculated by starting", 50, 250);
+	c.drawString ("at 2500, and adding/subtracting points based on if the user hits.", 50, 275);
+	c.drawString ("To play the game, use wasd to move your cursor, space to hit, and", 50, 300);
+	c.drawString ("and c to enable cheat mode, if any.", 50, 325);
+
 	t.pauseProgram (230, 400, 25, "Press any key to return.", Color.white);
     }
 
