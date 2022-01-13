@@ -178,6 +178,7 @@ public class PlayGame
 	    if (hits == 15 || user.remaining == 0)
 		finished = true;                                        // exit game is over
 	}
+	enemy.remaining(turns, hits, score);
 	if (hits == 15)
 	{
 	    t.errorMessage ("Nice! You found all the ships in " + turns + " moves.", "SUCCESS", 1);
