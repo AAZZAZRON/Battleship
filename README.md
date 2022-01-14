@@ -1,5 +1,5 @@
 # Battleship (ICS3U ISP)
-Grade 11 Final ICS Project.
+Grade 11 Final ICS Project made by Aaron Zhu and James Huynh.
 
 Recreation of the game, Battleship, created with HSA.
 
